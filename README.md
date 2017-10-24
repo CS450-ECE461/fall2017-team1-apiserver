@@ -1,6 +1,4 @@
 # Server Side API
-
-
 This README outlines the details of starting up the API server
 
 ## Prerequisites
