@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@onehilltech/blueprint": "^3.2.0",
-    "@onehilltech/blueprint-mongodb": "^0.35.5"
+    "@onehilltech/blueprint-mongodb": "^0.35.5",
+    "@onehilltech/blueprint-swagger": "^0.2.0"
   },
   "devDependencies": {},
   "license": "Apache-2.0",
