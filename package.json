@@ -9,8 +9,7 @@
     "stop-server": "env NODE_ENV=production forever stop app/index.js"
   },
   "dependencies": {
-    "@onehilltech/blueprint": "^3.2.0",
-    "@onehilltech/blueprint-mongodb": "^0.35.5"
+    "@onehilltech/blueprint-gatekeeper": "^0.68.2"
   },
   "devDependencies": {},
   "license": "Apache-2.0",
