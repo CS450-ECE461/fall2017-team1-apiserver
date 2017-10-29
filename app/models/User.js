@@ -12,6 +12,11 @@ var schema = new mongodb.Schema({
     password: { type: String, required: true, hidden: true}
 });
 
+
+schema.methods.checkPassword = function(password){
+    return this.password == password;
+};
+
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';
 
