@@ -9,7 +9,20 @@ var schema = new mongodb.Schema({
 
     email:{type: String, required: true, unique: true, trim: true},
 
-    password: { type: String, required: true, hidden: true}
+    password: { type: String, required: true, hidden: true},
+    
+    gender: { type: String, required: true, trim: true},
+    
+    bio: {type: String, trim: true},
+    
+    homeAddress: {type: String, required: true, trim: true},
+    
+    geoLocation: {type: String, trim: true},
+    
+    //did not add Profile picture..
+    birthday: {type: String, required: true, trime:true},
+    
+    numoOfDogs: {type: Int, required: true}
 });
 
 
