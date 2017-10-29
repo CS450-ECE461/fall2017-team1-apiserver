@@ -1,7 +1,6 @@
 'use strict';
 
-var blueprint = require ('@onehilltech/blueprint')
-  ;
+var blueprint = require ('@onehilltech/blueprint');
 
 module.exports = {
   connections: {

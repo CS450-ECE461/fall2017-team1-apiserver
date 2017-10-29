@@ -1,11 +1,21 @@
 'use strict';
 
-const mongodb = require ('@onehilltech/blueprint-mongodb')
-  ;
+const mongodb = require ('@onehilltech/blueprint-mongodb');
 
 var schema = new mongodb.Schema({
-  full_name: {type: String, required: true, trim: true}
+    firstName: {type: String, required: true, trim: true},
+
+    lastName: {type: String, required: true, trim: true},
+
+    email:{type: String, required: true, unique: true, trim: true},
+
+    password: { type: String, required: true, hidden: true}
 });
+
+
+schema.methods.checkPassword = function(password){
+    return this.password == password;
+};
 
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';
