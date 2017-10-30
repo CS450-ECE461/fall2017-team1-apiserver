@@ -42,7 +42,7 @@ userSchema.methods.checkEmail = function(email){
 
 //Some testing methods for the userSchema
 userSchema.methods.printFn = function(){
-    console.log(firstName);
+    console.log(this.firstName);
 };
 
 const COLLECTION_NAME = 'users';
