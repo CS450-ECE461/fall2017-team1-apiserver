@@ -1,5 +1,5 @@
 module.exports = exports = {
-    '/User' : {
-        post : { action : 'UserController@userDisplay'}
+    '/user' : {
+        get : { action : 'UserController@userDisplay'}
     }
 };

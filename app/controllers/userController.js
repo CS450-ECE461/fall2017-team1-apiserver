@@ -16,12 +16,14 @@ function UserController () {
 }
 
 
-
+blueprint.controller (UserController);
 
 UserController.prototype.userDisplay = function () {
+    console.log("test");
   return function (req, res) {
       console.log("In User Controller");
       console.log(req.body);
+      res.sendStatus(200);
       //User.findOne({'firstName': req.body.firstName});
         
   };
@@ -30,5 +32,5 @@ UserController.prototype.userDisplay = function () {
 
 
 
-blueprint.controller (UserController);
-module.exports = UserController;
+
+module.exports = exports = UserController;
