@@ -20,12 +20,12 @@ var userSchema = new mongodb.Schema({
     
     homeAddress: {type: String, required: true, trim: true},
     
-    geoLocation: {type: String, trim: true},
+    geoLocation: {type: String, trim: true},//remove this
     
     //did not add Profile picture..
     birthday: {type: String, required: true, trim: true},
     
-    numOfDogs: {type: Number, required: true}
+    numOfDogs: {type: Number, required: true}//dog objects
 });
 
 

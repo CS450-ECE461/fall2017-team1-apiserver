@@ -1,16 +1,17 @@
 var blueprint = require ('@onehilltech/blueprint'),
     mongodb = ('@onehilltech/blueprint-mongodb'),
+    ResourceController = mongodb.ResourceController,
     User = require('../models/User'),
     util = require ('util');
 
 
 
 function UserController () {
-    blueprint.BaseController.call (this);
+    ResourceController.call (this, {resource: User});
 }
 
 console.log("------------------------------------------------------test 1");
-blueprint.controller (UserController);
+blueprint.controller (UserController, ResourceController);
 
 UserController.prototype.userDisplay = function () {
     console.log("------------------------------------------------------test 2");
