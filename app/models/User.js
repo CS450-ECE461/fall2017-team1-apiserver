@@ -6,8 +6,6 @@ const mongodb = require ('@onehilltech/blueprint-mongodb');
 // User Schema
 var userSchema = new mongodb.Schema({
     
-    uniqueId: {type: Number, required: true},
-    
     firstName: {type: String, required: true, trim: true},
 
     lastName: {type: String, required: true, trim: true},
@@ -48,4 +46,4 @@ userSchema.methods.printFn = function(){
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';
 
-module.exports = mongodb.model(MODEL_NAME, userSchema, COLLECTION_NAME);
+module.exports = mongodb.resource(MODEL_NAME, userSchema, COLLECTION_NAME);
