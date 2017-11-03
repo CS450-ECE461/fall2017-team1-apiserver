@@ -7,11 +7,13 @@ var blueprint = require ('@onehilltech/blueprint'),
 
 
 function UserController () {
-    ResourceController.call (this, {resource: User});
+    blueprint.ResourceController.call (this, {name: 'user', model: User});
 }
 
+blueprint.controller (UserController, blueprint.ResourceController);
+
 console.log("------------------------------------------------------test 1");
-blueprint.controller (UserController, ResourceController);
+
 
 UserController.prototype.userDisplay = function () {
     console.log("------------------------------------------------------test 2");
@@ -23,10 +25,16 @@ UserController.prototype.userDisplay = function () {
       console.log("------------------------------------------------------test 4");
       console.log(userName);
       console.log("------------------------------------------------------test 5");
-        
+
   };
 };
 
+
+UserController.prototype.getUser = function(){
+    return function(req, res){
+     return res.sendStatus(404);
+    }
+}
 
 
 
