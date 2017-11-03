@@ -12,23 +12,6 @@ function UserController () {
 
 blueprint.controller (UserController, blueprint.ResourceController);
 
-console.log("------------------------------------------------------test 1");
-
-
-UserController.prototype.userDisplay = function () {
-    console.log("------------------------------------------------------test 2");
-  return function (req, res) {
-      console.log("------------------------------------------------------test 3");
-      console.log(req.body);
-      res.sendStatus(200);
-      var userName = User.findOne({'firstName': req.body.firstName});
-      console.log("------------------------------------------------------test 4");
-      console.log(userName);
-      console.log("------------------------------------------------------test 5");
-
-  };
-};
-
 
 UserController.prototype.getUser = function(){
     return function(req, res){
@@ -50,7 +33,6 @@ UserController.prototype.updateUser = function(){
 
             return res.sendStatus(200);
         });
-
     }
 }
 
