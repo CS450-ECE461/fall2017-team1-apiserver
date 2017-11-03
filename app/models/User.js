@@ -5,7 +5,7 @@ const mongodb = require ('@onehilltech/blueprint-mongodb');
 
 // User Schema
 var userSchema = new mongodb.Schema({
-    
+
     firstName: {type: String, required: true, trim: true},
 
     lastName: {type: String, required: true, trim: true},
@@ -13,19 +13,38 @@ var userSchema = new mongodb.Schema({
     email: {type: String, required: true, unique: true, trim: true},
 
     password: {type: String, required: true, hidden: true},
-    
+
     gender: {type: String, required: true, trim: true},
-    
+
     bio: {type: String, trim: true},
-    
+
     homeAddress: {type: String, required: true, trim: true},
-    
-    geoLocation: {type: String, trim: true},//remove this
-    
-    //did not add Profile picture..
-    birthday: {type: String, required: true, trim: true},
-    
-    numOfDogs: {type: Number, required: true}//dog objects
+
+    // the current status of the dog(s)
+    status: {type: String, required: true, trim: true},
+
+    birthday: {type: Date, required: true, trim: true},
+
+    // allow the user to own multiple dogs
+    dog: [{
+        firstName: {type: String, required: true, trim: true},
+
+        lastName: {type: String, trim: true},
+
+        bio: {type: String, trim: true},
+
+        gender: {type: String, required: true, trim: true},
+
+        breed: {type: String, required: true, trim: true},
+
+        birthday: {type: Date, required: true, trim: true},
+
+        size: {type: String, required: true, trim: true},
+
+        fixed: {type: String, required: true, trim: true},
+
+        vetVerification: {type: [String], required: true, trim: true}
+    }]
 });
 
 
