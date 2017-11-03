@@ -25,6 +25,7 @@ var userSchema = new mongodb.Schema({
 
     birthday: {type: Date, required: true, trim: true},
 
+    activated: {type: Boolean},
     // allow the user to own multiple dogs
     dog: [{
         firstName: {type: String, required: true, trim: true},
