@@ -6,10 +6,16 @@ const dab = require ('@onehilltech/dab');
 module.exports = {
   users: dab.times (5, function (i, opts, callback) {
     return callback (null, {
-        firstName: 'fname ' + i,
-        lastName: 'lname' + i,
-        email: 'account' + i + '@email.com',
-        password: 'account' + i
+        firstName: 'firsty Namey ' + i,
+        lastName: 'lasty Namey' + i,
+        email: 'accounty' + i + '@email.com',
+        password: 'passwordy' + i,
+        gender: 'maleOrFemaleorShemale' + i,
+        bio: 'biographies' + i,
+        homeAddress: 'homeAddressess' + i,
+        geoLocation: "geoLoct" + i,
+        birthday: "day of birth" + i,
+        numOfDogs: 13 + i
     });
   })
 };
