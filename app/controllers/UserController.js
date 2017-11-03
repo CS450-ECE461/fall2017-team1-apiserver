@@ -32,7 +32,25 @@ UserController.prototype.userDisplay = function () {
 
 UserController.prototype.getUser = function(){
     return function(req, res){
+        console.log(req);
      return res.sendStatus(404);
+    }
+}
+
+UserController.prototype.updateUser = function(){
+    return function(req, res){
+        console.log(req.params.id);
+        User.findById(req.params.id, function(err, person){
+            if(err) return res.sendStatus(500);
+            if(person == null){
+                return res.sendStatus(404);
+            }
+
+            person.update(req.body);
+
+            return res.sendStatus(200);
+        });
+
     }
 }
 
