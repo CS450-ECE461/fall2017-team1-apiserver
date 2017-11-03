@@ -17,7 +17,7 @@ LoginController.prototype.login = function () {
         console.log("login");
         console.log(req.body);
         User.findOne({'email': req.body.email}, function(err, person){
-            if(err) return res.sendStatus(400);
+            if(err) return res.sendStatus(500);
             if(person == null){
                 return res.sendStatus(404);
             } else {
