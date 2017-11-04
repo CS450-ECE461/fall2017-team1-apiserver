@@ -22,48 +22,48 @@ RegController.prototype.createUser = function(){
 
     console.log('---------------------------------------- 1');
 
+
     return {
+        validate: function (req, callback) {
+            req.checkBody ('FirstName', 'required').notEmpty ();
+            req.checkBody ('LastName', 'required').notEmpty ();
+            req.checkBody ('Email', 'required').notEmpty ();
+            req.checkBody ('Password', 'required').notEmpty ();
+
+            return callback (req.validationErrors (true));
+        },
+
+        sanitize: function (req, callback) {
+            req.sanitizeBody ('FirstName').escape ().trim ();
+            req.sanitizeBody ('LastName').escape ().trim ();
+            req.sanitizeBody ('Email').escape ().trim ();
+            req.sanitizeBody ('Password').escape ().trim ();
+
+            return callback (req.validationErrors (true));
+        },
+
         execute: function (req, res, callback) {
-            var fn = req.body.FirstName;
-            var ln = req.body.LastName;
-            var em = req.body.Email;
-            var pw = req.body.Password;
             var newUser = new User({
 
-                firstName: 'N/A',
-                lastName: 'N/A',
-                email: 'N/A',
-                password: 'N/A',
-
+                firstName: req.body.FirstName,
+                lastName: req.body.LastName,
+                email: req.body.Email,
+                password: req.body.Password,
                 gender: 'N/A',
-
                 bio: 'N/A',
-
                 homeAddress: 'N/A',
-
                 status: 'N/A',
-
                 birthday: Date.UTC((1970), (0), 0, 0, 0, 0),
-
                 activated: false,
-
                 dog: [{
                     firstName: 'N/A',
-
                     lastName: 'N/A',
-
                     bio: 'N/A',
-
                     gender: 'N/A',
-
                     breed: 'N/A',
-
                     birthday: Date.UTC((1970), (0), 0, 0, 0, 0),
-
                     size: 'N/A',
-
                     fixed: 'N/A',
-
                     vetVerification: ['N/A']
                 }]
             });
