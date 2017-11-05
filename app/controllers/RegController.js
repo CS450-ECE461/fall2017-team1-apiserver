@@ -3,10 +3,8 @@ var blueprint = require ('@onehilltech/blueprint'),
     ResourceController = mongodb.ResourceController,
     HttpError = blueprint.errors.HttpError,
     User = require('../models/User'),
-    util = require ('util'),
-    dab = require ('@onehilltech/dab');
-
-
+    util = require ('util');
+const sendmail = require('sendmail')();
 
 
 
@@ -17,11 +15,28 @@ function RegController () {
 blueprint.controller (RegController, blueprint.ResourceController);
 
 
+
+//Sends an email to the user with activation link(no link yet)
+function sendEmail(userEmail) {
+    sendmail({
+        from: 'singh65@umail.iu.edu',
+        to: userEmail,
+        subject: 'Confirmation of Registration-DogTinder',
+        html: 'Please click link below to activate your account. ',
+    }, function (err, reply) {
+        console.log(err && err.stack);
+        console.dir(reply);
+    });
+}
+
+
+
+
+
+
+//Currently inserts user into database, by default they are unactivated
 RegController.prototype.createUser = function(){
     var self = this;
-
-    console.log('---------------------------------------- 1');
-
 
     return {
         validate: function (req, callback) {
@@ -69,16 +84,13 @@ RegController.prototype.createUser = function(){
             });
             newUser.save(function(err, newUser) {
                 if (err) return callback(new HttpError (500, 'Failed to save user'));
-
-            res.status(200).json(newUser.id);
-            return callback(null);
+                res.status(200).json(newUser.id);
+                return callback(null);
             });
-            console.log('---------------------------------------- 2');
-            console.log('---------------------------------------- 3');
+            //sending confirmation email
+            sendEmail(req.body.Email);
         }
-
     };
-
 };
 
 
