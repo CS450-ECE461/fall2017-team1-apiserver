@@ -32,28 +32,52 @@ UserController.prototype.userDisplay = function () {
 
 UserController.prototype.getUser = function(){
     return function(req, res){
-        console.log(req);
-     return res.sendStatus(404);
+        User.findById(req.params.id, function(err, person){
+            if(err) return res.sendStatus(500);
+            if(person == null) { return res.sendStatus(404); }
+            console.log(person);
+            return res.status(200).json(person);
+        });
     }
 }
 
 UserController.prototype.updateUser = function(){
     return function(req, res){
 
-        User.count({_id: req.params.id}, function(err, count){
-            // if user isn't found, return 404
-            if(count == 0) {return res.sendStatus(404);}
+        // update user and return updated model
+        User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, user){
+            if(err){ return res.sendStatus(500); }
+            if(user == null) {return res.sendStatus(404);}
+            return res.status(200).json(user);
+        });
 
-            // update user and return updated model
-            User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, user){
-                if(err){ return res.sendStatus(500); }
-                return res.status(200).json(user);
-            });
+    }
+}
 
+UserController.prototype.getDog = function(){
+    return function(req, res){
+        console.log(req);
+        User.findById(req.params.id, function(err, person){
+            if(err) return res.sendStatus(500);
+            if(person == null) { return res.sendStatus(404); }
+            var dog = person.dog.find(function(dog) { return dog._id == req.params.dogId; });
+            return res.status(200).json(dog);
         });
     }
 }
 
+UserController.prototype.addDog = function(){
+    return function(req, res){
+        return res.status(200).json(person);
+    }
+}
+
+
+UserController.prototype.updateDog = function(){
+    return function(req, res){
+        return res.status(200).json(person);
+    }
+}
 
 
 
