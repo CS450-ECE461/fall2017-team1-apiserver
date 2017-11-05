@@ -39,18 +39,18 @@ UserController.prototype.getUser = function(){
 
 UserController.prototype.updateUser = function(){
     return function(req, res){
-        console.log(req.params.id);
-        User.findById(req.params.id, function(err, person){
-            if(err) return res.sendStatus(500);
-            if(person == null){
-                return res.sendStatus(404);
-            }
 
-            person.update(req.body);
+        User.count({_id: req.params.id}, function(err, count){
+            // if user isn't found, return 404
+            if(count == 0) {return res.sendStatus(404);}
 
-            return res.sendStatus(200);
+            // update user and return updated model
+            User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, user){
+                if(err){ return res.sendStatus(500); }
+                return res.status(200).json(user);
+            });
+
         });
-
     }
 }
 
