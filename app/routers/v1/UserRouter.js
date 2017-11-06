@@ -10,6 +10,10 @@ module.exports = exports = {
         '/dogs/:dogId': {
             get: {action: 'UserController@getDog'},
             put: {action: 'UserController@updateDog'},
+        },
+
+        '/status': {
+            post: {action: 'UserController@updateStatus' }
         }
     }
 

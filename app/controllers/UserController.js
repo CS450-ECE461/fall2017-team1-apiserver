@@ -26,12 +26,24 @@ UserController.prototype.getUser = function(){
 
 UserController.prototype.updateUser = function(){
     return function(req, res){
-
         // update user and return updated model
         User.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, user){
             if(err){ return res.sendStatus(500); }
             if(user == null) {return res.sendStatus(404);}
             return res.status(200).json(user);
+        });
+
+    }
+}
+
+
+UserController.prototype.updateStatus = function(){
+    return function(req, res){
+        // update user and return updated model
+        User.findByIdAndUpdate({_id: req.params.id}, {status: req.body.status}, {new: true}, function(err, user){
+            if(err){ return res.sendStatus(500); }
+            if(user == null) {return res.sendStatus(404);}
+            return res.sendStatus(204);
         });
 
     }
@@ -75,8 +87,6 @@ UserController.prototype.updateDog = function(){
                 console.log(person);
                 return res.status(200).json(person);
         });
-
-
     }
 }
 
