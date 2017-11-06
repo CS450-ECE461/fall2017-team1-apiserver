@@ -68,14 +68,33 @@ UserController.prototype.getDog = function(){
 
 UserController.prototype.addDog = function(){
     return function(req, res){
-        return res.status(200).json(person);
+        console.log(req.body);
+        User.findById(req.params.id, function(err, person){
+            if(err) return res.sendStatus(500);
+            if(person == null) { return res.sendStatus(404); }
+            person.dog.push(req.body);
+            person.save();
+            console.log(person);
+            return res.status(201).json(person);
+        });
+
     }
 }
 
-
+// the whole dog body will need to be sent, else subdocument will be overwritten
 UserController.prototype.updateDog = function(){
     return function(req, res){
-        return res.status(200).json(person);
+        User.findOneAndUpdate(
+            {_id: req.params.id, 'dog._id': req.params.dogId},
+            {'dog.$' : req.body},  {new: true}, function(err, person){
+
+                if(err) return res.sendStatus(500);
+                if(person == null) { return res.sendStatus(404); }
+                console.log(person);
+                return res.status(200).json(person);
+        });
+
+
     }
 }
 
