@@ -15,14 +15,14 @@ function RegController () {
 blueprint.controller (RegController, blueprint.ResourceController);
 
 
-
 //Sends an email to the user with activation link(no link yet)
 function sendEmail(userEmail) {
     sendmail({
         from: 'singh65@umail.iu.edu',
         to: userEmail,
         subject: 'Confirmation of Registration-DogTinder',
-        html: 'Please click link below to activate your account. ',
+        html: 'Please click link below to activate your account.' +
+        '<br/> Link: http://localhost:5000/v1/reg/confirm?emailID=' + userEmail,
     }, function (err, reply) {
         console.log(err && err.stack);
         console.dir(reply);
@@ -97,20 +97,38 @@ RegController.prototype.createUser = function(){
 
 
 RegController.prototype.confirmUser = function() {
-    return function(req, res){
-        console.log(req.params.id);
-        User.findById(req.params.id, function(err, person){
-            if(err) return res.sendStatus(500);
-            if(person == null){
-                return res.sendStatus(404);
-            }
+    return {
+    validate: function (req, callback) {
+            console.log(req.params.emailID);
+            console.log('-------------------0');
+            console.log(req.params.emailID);
+            req.checkParams ('emailID', 'Missing/invalid message id').notEmpty ();
+            return callback (req.validationErrors (true));
+            console.log('-------------------1');
+        },
 
-            person.update(req.body);
+        sanitize: function (req, callback) {
+            req.sanitizeParams ('emailID').toMongoId ();
+            return callback (req.validationErrors (true));
+        },
 
-            return res.sendStatus(200);
-        });
-    }
-}
+
+        execute: function (req, res, callback) {
+            console.log('-------------------2');
+            console.log(req.params.emailID);
+            var emailID = req.params.emailID;
+            console.log('-------------------3');
+            User.findById (emailID, '-__v', function (err, msg) {
+                console.log('-------------------4');
+                if (err) return callback (new HttpError (500, 'Failed to retrieve message'));
+                if (!msg) return callback (new HttpError (404, 'Message not found'));
+
+                res.status (200).json (msg);
+                return callback (null);
+            });
+        }
+    };
+};
 
 
 
