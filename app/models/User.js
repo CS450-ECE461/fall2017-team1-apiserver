@@ -1,10 +1,16 @@
 'use strict';
 
-const mongodb = require ('@onehilltech/blueprint-mongodb');
+const blueprint = require ('@onehilltech/blueprint'),
+      mongodb = require ('@onehilltech/blueprint-mongodb'),
+      ObjectId = mongodb.Schema.Types.ObjectId,
+      Account = blueprint.app.models.Account;
 
+console.log(Account);
 
 // User Schema
 var userSchema = new mongodb.Schema({
+
+    accountId: {type: ObjectId, required: true, ref: Account._id, const: true },
 
     firstName: {type: String, required: true, trim: true},
 
