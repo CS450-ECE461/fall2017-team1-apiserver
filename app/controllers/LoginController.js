@@ -1,6 +1,7 @@
 var blueprint = require ('@onehilltech/blueprint'),
     mongodb = ('@onehilltech/blueprint-mongodb'),
-    User = require('../models/User');
+    gatekeeper = require('@onehilltech/blueprint-gatekeeper'),
+    User = require('../models/User'),
     util = require ('util');
 
 function LoginController () {
@@ -16,7 +17,7 @@ LoginController.prototype.login = function () {
         console.log("login");
         console.log(req.body);
         User.findOne({'email': req.body.email}, function(err, person){
-            if(err) return res.sendStatus(400);
+            if(err) return res.sendStatus(500);
             if(person == null){
                 return res.sendStatus(404);
             } else {
@@ -24,7 +25,8 @@ LoginController.prototype.login = function () {
             }
 
             console.log(person);
-            return res.sendStatus(200);
+            //console.log(gatekeeper.);
+            return res.status(200).json({_id: person._id, token:'tempToken '});
         });
     };
 };
