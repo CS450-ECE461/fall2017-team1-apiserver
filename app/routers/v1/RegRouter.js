@@ -2,7 +2,7 @@ module.exports = exports = {
     '/reg':{
         post : {action: 'RegController@createUser'}
     },
-    '/reg/confirm':{
+    '/reg/confirm/:emailID':{
         post : {action: 'RegController@confirmUser'}
     }
 };
