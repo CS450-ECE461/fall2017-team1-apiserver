@@ -15,7 +15,7 @@ function RegController () {
 blueprint.controller (RegController, blueprint.ResourceController);
 
 
-//Sends an email to the user with activation link(no link yet)
+//Sends an email to the user with activation link
 function sendEmail(userEmail) {
     sendmail({
         from: 'singh65@umail.iu.edu',
@@ -95,20 +95,21 @@ RegController.prototype.createUser = function(){
 
 
 
-
+//Sets activated to true
 RegController.prototype.confirmUser = function() {
     return {
-
         execute: function (req, res, callback) {
             var userEmail = req.params.emailID;
-            User.findOne ({'email': userEmail}, function (err, person) {
+            User.findOneAndUpdate ({'email': userEmail}, {new: true}, function (err, person) {
                 if(err) return res.sendStatus(400);
                 if(person == null){
                     return res.sendStatus(404);
                 } else {
-                    //person.updateAct(true);
+                    person.updateAct(true);
+                    console.log(person);
+                    person.save();
                 }
-                return res.status(200);
+                return res.status(200).json(person);
             });
         }
     };

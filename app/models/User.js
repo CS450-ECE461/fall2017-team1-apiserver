@@ -58,7 +58,13 @@ userSchema.methods.checkEmail = function(email){
     return this.email == email;
 };
 
+userSchema.methods.updateAct = function(varBool){
+    this.activated = varBool;
+};
 
+userSchema.methods.getActivation = function(){
+    return this.activated;
+};
 
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';

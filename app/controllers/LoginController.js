@@ -10,6 +10,8 @@ function LoginController () {
 
 blueprint.controller (LoginController);
 
+
+
 LoginController.prototype.login = function () {
     var self = this;
 
@@ -21,7 +23,13 @@ LoginController.prototype.login = function () {
             if(person == null){
                 return res.sendStatus(404);
             } else {
-                if(!person.checkPassword(req.body.password)) return res.sendStatus(401);
+                var actBool = person.getActivation();//see if person is activated or not.
+                if (actBool == true){
+                    if(!person.checkPassword(req.body.password)) return res.sendStatus(401);
+                }
+                else{
+                    return res.status(200).json('Please check Email for activation link');
+                }
             }
 
             console.log(person);
