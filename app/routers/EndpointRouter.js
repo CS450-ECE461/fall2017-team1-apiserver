@@ -7,6 +7,7 @@ const corsOptions = {
 };
 
 module.exports = {
+
     '/v1': {
         use: [
             cors (corsOptions),

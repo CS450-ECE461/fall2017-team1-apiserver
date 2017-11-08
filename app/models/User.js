@@ -18,10 +18,10 @@ var userSchema = new mongodb.Schema({
 
     bio: {type: String, trim: true},
 
-    homeAddress: {type: String, required: true, trim: true},
+    homeAddress: {type: String,  trim: true},
 
     // the current status of the dog(s)
-    status: {type: String, required: true, trim: true},
+    status: {type: String,  trim: true},
 
     birthday: {type: Date, required: true, trim: true},
 
@@ -29,23 +29,24 @@ var userSchema = new mongodb.Schema({
 
     // allow the user to own multiple dogs
     dog: [{
-        firstName: {type: String, required: true, trim: true},
+
+        firstName: {type: String,  trim: true},
 
         lastName: {type: String, trim: true},
 
         bio: {type: String, trim: true},
 
-        gender: {type: String, required: true, trim: true},
+        gender: {type: String,  trim: true},
 
-        breed: {type: String, required: true, trim: true},
+        breed: {type: String,  trim: true},
 
-        birthday: {type: Date, required: true, trim: true},
+        birthday: {type: Date,  trim: true},
 
-        size: {type: String, required: true, trim: true},
+        size: {type: String,  trim: true},
 
-        fixed: {type: String, required: true, trim: true},
+        fixed: {type: String,  trim: true},
 
-        vetVerification: {type: [String], required: true, trim: true}
+        vetVerification: {type: [String], trim: true}
     }]
 });
 
@@ -58,6 +59,10 @@ userSchema.methods.checkEmail = function(email){
     return this.email == email;
 };
 
+userSchema.methods.fullName = function(){
+    return this.firstName + " " + this.lastName;
+};
+
 userSchema.methods.updateAct = function(varBool){
     this.activated = varBool;
 };
@@ -65,6 +70,7 @@ userSchema.methods.updateAct = function(varBool){
 userSchema.methods.getActivation = function(){
     return this.activated;
 };
+
 
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';

@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7bd313a-fe9d-414f-9de6-f637902199f2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gatekeeper/gatekeeper-cli" afterPath="$PROJECT_DIR$/.gatekeeper/gatekeeper-cli" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/LoginController.js" afterPath="$PROJECT_DIR$/app/controllers/LoginController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/RegController.js" afterPath="$PROJECT_DIR$/app/controllers/RegController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/UserController.js" afterPath="$PROJECT_DIR$/app/controllers/UserController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/User.js" afterPath="$PROJECT_DIR$/app/models/User.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routers/EndpointRouter.js" afterPath="$PROJECT_DIR$/app/routers/EndpointRouter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routers/v1/UserRouter.js" afterPath="$PROJECT_DIR$/app/routers/v1/UserRouter.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +24,8 @@
       <file leaf-file-name="UserController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/UserController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -32,8 +34,8 @@
       <file leaf-file-name="RegController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/RegController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="87" column="15" lean-forward="true" selection-start-line="87" selection-start-column="15" selection-end-line="87" selection-end-column="15" />
+            <state relative-caret-position="226">
+              <caret line="78" column="31" lean-forward="false" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -42,8 +44,8 @@
       <file leaf-file-name="LoginController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/LoginController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="630">
+              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -62,9 +64,12 @@
       <file leaf-file-name="UserRouter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routers/v1/UserRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="270">
+              <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+              <folding>
+                <marker date="1510120663000" expanded="true" signature="27:104" ph="{...}" />
+                <marker date="1510120663000" expanded="true" signature="45:104" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,11 +97,9 @@
       <file leaf-file-name="User.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/User.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-              <folding>
-                <marker date="1510118342000" expanded="true" signature="128:508" ph="{...}" />
-              </folding>
+            <state relative-caret-position="753">
+              <caret line="71" column="2" lean-forward="false" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,9 +121,9 @@
         <option value="$PROJECT_DIR$/app/seeds/mongodb/$default.js" />
         <option value="$PROJECT_DIR$/app/routers/v1/RegRouter.js" />
         <option value="$PROJECT_DIR$/app/controllers/UserController.js" />
-        <option value="$PROJECT_DIR$/app/models/User.js" />
         <option value="$PROJECT_DIR$/app/controllers/LoginController.js" />
         <option value="$PROJECT_DIR$/app/controllers/RegController.js" />
+        <option value="$PROJECT_DIR$/app/models/User.js" />
       </list>
     </option>
   </component>
@@ -262,12 +265,12 @@
       <workItem from="1509644743799" duration="4738000" />
       <workItem from="1510026436137" duration="5017000" />
       <workItem from="1510074395431" duration="4058000" />
-      <workItem from="1510111967116" duration="5092000" />
+      <workItem from="1510111967116" duration="5557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18905000" />
+    <option name="totallyTimeSpent" value="19370000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="796" y="23" width="1118" height="1075" extended-state="0" />
@@ -339,7 +342,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1510120663000" expanded="true" signature="27:104" ph="{...}" />
+            <marker date="1510120663000" expanded="true" signature="45:104" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -363,9 +369,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <marker date="1510118342000" expanded="true" signature="128:508" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -429,7 +433,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="48" lean-forward="true" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-          <folding />
+          <folding>
+            <marker date="1510120663000" expanded="true" signature="27:104" ph="{...}" />
+            <marker date="1510120663000" expanded="true" signature="45:104" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -453,9 +460,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <marker date="1510118342000" expanded="true" signature="128:508" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -495,7 +500,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1510120663000" expanded="true" signature="27:104" ph="{...}" />
+            <marker date="1510120663000" expanded="true" signature="45:104" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -518,9 +526,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1510118342000" expanded="true" signature="128:508" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -573,9 +579,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routers/v1/UserRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="270">
+          <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+          <folding>
+            <marker date="1510120663000" expanded="true" signature="27:104" ph="{...}" />
+            <marker date="1510120663000" expanded="true" signature="45:104" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -597,35 +606,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/UserController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/RegController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="87" column="15" lean-forward="true" selection-start-line="87" selection-start-column="15" selection-end-line="87" selection-end-column="15" />
+        <state relative-caret-position="226">
+          <caret line="78" column="31" lean-forward="false" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/LoginController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state relative-caret-position="630">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/User.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <marker date="1510118342000" expanded="true" signature="128:508" ph="{...}" />
-          </folding>
+        <state relative-caret-position="753">
+          <caret line="71" column="2" lean-forward="false" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
