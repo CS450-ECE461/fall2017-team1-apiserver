@@ -1,11 +1,18 @@
-// app/routers/EndpointRouter.js
-const blueprint = require ('@onehilltech/blueprint')
-;
+'use strict';
 
-module.exports = exports = {
-    '/gatekeeper': blueprint ('router://@onehilltech/blueprint-gatekeeper:v1')
+let cors = require ('cors');
+
+const corsOptions = {
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'SEARCH']
 };
 
-// need to give ember js my client-id
+module.exports = {
 
-// ember-gatekeeper takes care of the request.
+    '/v1': {
+        use: [
+            cors (corsOptions),
+        ]
+    },
+
+    '/gatekeeper': blueprint ('router://@onehilltech/blueprint-gatekeeper:v1')
+};
