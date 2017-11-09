@@ -25,6 +25,8 @@ var userSchema = new mongodb.Schema({
 
     birthday: {type: Date, required: true, trim: true},
 
+    activated: {type: Boolean},
+
     // allow the user to own multiple dogs
     dog: [{
 
@@ -59,7 +61,15 @@ userSchema.methods.checkEmail = function(email){
 
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
-}
+};
+
+userSchema.methods.updateAct = function(varBool){
+    this.activated = varBool;
+};
+
+userSchema.methods.getActivation = function(){
+    return this.activated;
+};
 
 
 const COLLECTION_NAME = 'users';

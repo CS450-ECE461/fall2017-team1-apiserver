@@ -16,8 +16,4 @@ module.exports = exports = {
             post: {action: 'UserController@updateStatus' }
         }
     }
-
-
-
-
 };
