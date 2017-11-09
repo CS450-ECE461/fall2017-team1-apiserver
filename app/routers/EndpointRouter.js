@@ -1,6 +1,7 @@
 'use strict';
 
-let cors = require ('cors');
+let cors = require ('cors'),
+    blueprint = require ('@onehilltech/blueprint');
 
 const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'SEARCH']

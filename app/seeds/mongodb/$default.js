@@ -6,19 +6,14 @@ const dab = require ('@onehilltech/dab'),
     ObjectId = mongodb.Types.ObjectId;
 
 
+
 const scopes = [
     [gatekeeper.scope.account.create],
     [],
     []
 ];
 
-const LOGIN_CLIENTS = {
-    tester0: 0,
-    tester1: 0,
-    tester2: 1,
-    tester3: 2,
-    tester4: 2
-};
+
 
 
 
@@ -29,10 +24,9 @@ module.exports = {
 
       var times = Math.floor(Math.random() * 4) + 1;
 
-       // account.
       return callback(null, {
           accountId: account._id,
-          firstName: 'firsty Namey',
+          firstName: 'firsty Namey ',
           lastName: account.username,
           email: account.username+ '@email.com',
           password: account.username,
@@ -41,15 +35,15 @@ module.exports = {
           homeAddress: 'homeAddressess' + account.username,
           geoLocation: "geoLoct" + account.username,
           status: 'status' + account.username,
-          birthday: Date.UTC((1990 + times),  1, times, 0, 0, 0),
+          birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
           dog: dab.times(times, function(i, opts, callback){
               return callback(null, {
-                  firstName: 'first ' + account.username,
-                  lastName: 'lasty dogo name',
+                  firstName: 'first dogo name' + i,
+                  lastName: 'lasty dogo name' + i,
                   bio: 'im heckin cool',
                   gender:'maleOrFemaleorShemale',
                   breed: 'breed' + i,
-                  birthday: Date.UTC((2005 + times), (1 + i), times, 0, 0, 0),
+                  birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
                   size:"large",
                   fixed:"neutered/spayed",
                   vetVerification:["verification"]
@@ -57,15 +51,24 @@ module.exports = {
           })
 
       });
+
   }),
 
-    clients: dab.times (3, function (i, opts, callback) {
-        var clientName = 'client' + i;
-        var client = {name: clientName, secret: clientName, email: clientName + '@no-reply.com', scope: scopes[i]};
+    // single web access client
+    clients: dab.times (1, function (i, opts, callback) {
+        var clientName = 'supdog-web';
+        var client = {
+            _id: process.env.CLIENT_ID,
+            name: clientName,
+            secret: process.env.CLIENT_SECRET,
+            email: clientName + '@no-reply.com',
+            scope: scopes[i]
+        };
 
         return callback (null, client);
     }),
 
+    // account for each of out users
     accounts: dab.times (5, function (i, opts, callback) {
         var username = 'tester' + i;
         var account = {
@@ -76,23 +79,6 @@ module.exports = {
         };
 
         return callback (null, account);
-    }),
-
-    user_tokens: dab.map (dab.get ('accounts'), function (account, opts, callback) {
-        const clientIndex = LOGIN_CLIENTS[account.username];
-
-        var model = {
-            client: dab.get ('clients.' + clientIndex),
-            account: account._id,
-            refresh_token: new ObjectId(),
-            scope: scopes[clientIndex]
-        };
-
-        return callback (null, model);
-    }),
-
-    client_tokens: dab.map (dab.get ('clients'), function (client, opts, callback) {
-        return callback (null, {client: client._id});
     }),
 
 
