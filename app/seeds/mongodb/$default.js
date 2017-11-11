@@ -6,9 +6,16 @@ const dab = require ('@onehilltech/dab'),
     ObjectId = mongodb.Types.ObjectId;
 
 
+const userIds = [
+    "5a069b13bd9143509882c581",
+    "5a069b13bd9143509882c583",
+    "5a069b13bd9143509882c584",
+    "5a069b13bd9143509882c582",
+    "5a069b13bd9143509882c585"
+];
 
 const scopes = [
-    [gatekeeper.scope.account.create],
+    ["*"],
     [],
     []
 ];
@@ -23,8 +30,9 @@ module.exports = {
     users: dab.map (dab.get ('accounts'), function (account, opts, callback) {
 
       var times = Math.floor(Math.random() * 4) + 1;
-
+      var i = 0;
       return callback(null, {
+          _id: userIds[account.number],
           accountId: account._id,
           firstName: 'firsty Namey ',
           lastName: account.username,
@@ -75,7 +83,8 @@ module.exports = {
             created_by: dab.ref ('clients.0'),
             username: username,
             password: username,
-            email: username + '@no-reply.com'
+            email: username + '@no-reply.com',
+            number: i
         };
 
         return callback (null, account);
