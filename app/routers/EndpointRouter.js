@@ -4,6 +4,7 @@ let cors = require ('cors'),
     blueprint = require ('@onehilltech/blueprint');
 
 const corsOptions = {
+    origin: "*",
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'SEARCH']
 };
 
@@ -16,5 +17,8 @@ module.exports = {
         ]
     },
 
-    '/gatekeeper': blueprint ('router://@onehilltech/blueprint-gatekeeper:v1')
+    '/gatekeeper': [
+        cors (corsOptions),
+        blueprint('router://@onehilltech/blueprint-gatekeeper:v1')
+    ]
 };
