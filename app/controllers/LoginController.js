@@ -11,26 +11,29 @@ function LoginController () {
 
 blueprint.controller (LoginController);
 
-//console.log(blueprint.app.models.Account);
 
 LoginController.prototype.login = function () {
     var self = this;
 
     return function (req, res) {
-        console.log("login");
-        console.log(req.body);
-        User.findOne({'email': req.body.email}, function(err, person){
+        // look up account in the database
+        Account.findOne({'username': req.body.username}, function(err, account){
             if(err) return res.sendStatus(500);
-            if(person == null) { return res.sendStatus(404); }
+            if(account == null) { return res.sendStatus(404); }
 
-            Account.findOne({_id: person.accountId}, function(err, account){
-                if(err) return res.sendStatus(500);
-                if(account == null) { return res.sendStatus(404); }
-
-                console.log(person);
-                console.log(account);
-                return res.status(200).json({_id: person._id, token:account.});
+            // validate the users password
+            account.verifyPassword(req.body.password, function(err, invalid){
+                if(invalid){return res.sendStatus(403);}
             });
+
+            // if username and password are valid, return user of the account
+            User.findOne({'accountId': account._id}, function(err, user){
+                if(err) return res.sendStatus(500);
+                if(user == null) { return res.sendStatus(404); }
+
+                return res.status(200).json(user);
+            });
+
         });
     };
 };
