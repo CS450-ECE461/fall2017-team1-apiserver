@@ -36,8 +36,6 @@ module.exports = {
           accountId: account._id,
           firstName: 'firsty Namey ',
           lastName: account.username,
-          email: account.username+ '@email.com',
-          password: account.username,
           gender: 'maleOrFemaleorShemale',
           bio: 'biographies' + account.username,
           homeAddress: 'homeAddressess' + account.username,
@@ -70,7 +68,8 @@ module.exports = {
             name: clientName,
             secret: process.env.CLIENT_SECRET,
             email: clientName + '@no-reply.com',
-            scope: scopes[i]
+            scope: scopes[i],
+
         };
 
         return callback (null, client);
@@ -88,8 +87,5 @@ module.exports = {
         };
 
         return callback (null, account);
-    }),
-
-
-
+    })
 };

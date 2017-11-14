@@ -16,10 +16,6 @@ var userSchema = new mongodb.Schema({
 
     lastName: {type: String, required: true, trim: true},
 
-    email: {type: String, required: true, unique: true, trim: true},
-
-    password: {type: String, required: true, hidden: true},
-
     gender: {type: String, required: true, trim: true},
 
     bio: {type: String, trim: true},
@@ -54,14 +50,6 @@ var userSchema = new mongodb.Schema({
     }]
 });
 
-
-userSchema.methods.checkPassword = function(password){
-    return this.password == password;
-};
-
-userSchema.methods.checkEmail = function(email){
-    return this.email == email;
-};
 
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
