@@ -1,18 +1,20 @@
 'use strict';
 
-const mongodb = require ('@onehilltech/blueprint-mongodb');
+const blueprint = require ('@onehilltech/blueprint'),
+      mongodb = require ('@onehilltech/blueprint-mongodb'),
+      ObjectId = mongodb.Schema.Types.ObjectId,
+      Account = blueprint.app.models.Account;
 
+console.log(Account);
 
 // User Schema
 var userSchema = new mongodb.Schema({
 
+    accountId: {type: ObjectId, required: true, ref: Account._id, const: true },
+
     firstName: {type: String, required: true, trim: true},
 
     lastName: {type: String, required: true, trim: true},
-
-    email: {type: String, required: true, unique: true, trim: true},
-
-    password: {type: String, required: true, hidden: true},
 
     gender: {type: String, required: true, trim: true},
 
@@ -50,14 +52,6 @@ var userSchema = new mongodb.Schema({
     }]
 });
 
-
-userSchema.methods.checkPassword = function(password){
-    return this.password == password;
-};
-
-userSchema.methods.checkEmail = function(email){
-    return this.email == email;
-};
 
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
