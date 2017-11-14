@@ -14,6 +14,9 @@ module.exports = exports = {
 
         '/status': {
             post: {action: 'UserController@updateStatus' }
+        },
+        '/criteria': {
+            put: {action: 'MatchController@updateCriteria'}
         }
     }
 };

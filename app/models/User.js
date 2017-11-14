@@ -1,10 +1,15 @@
 'use strict';
 
-const mongodb = require ('@onehilltech/blueprint-mongodb');
+const blueprint = require ('@onehilltech/blueprint'),
+    mongodb = require ('@onehilltech/blueprint-mongodb'),
+    ObjectId = mongodb.Schema.Types.ObjectId,
+    MatchCriteria = require('./MatchCriteria');
 
 
 // User Schema
 var userSchema = new mongodb.Schema({
+
+    matchCriteriaId: {type: ObjectId, required: true, ref: MatchCriteria._id, const: true },
 
     firstName: {type: String, required: true, trim: true},
 
@@ -63,7 +68,11 @@ userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
 };
 
-
+userSchema.methods.getAgeOfOwner = function(){
+    var now = new Date();
+    var age = now.getFullYear() - this.birthday.getFullYear();
+    return age;
+};
 
 //Registration Methods
 userSchema.methods.updateAct = function(varBool){
@@ -76,35 +85,8 @@ userSchema.methods.getActivation = function(){
 
 
 
-//match model methods
-userSchema.methods.getAgeOfOwner = function(){
-    var now = new Date();
-    var age = now.getFullYear() - this.birthday.getFullYear();
-    return age;
-};
-
-userSchema.methods.getDogSize = function(whichDog){
-    return this.dog[whichDog, size];
-};
-
-userSchema.methods.getDogVerification = function(whichDog){
-    return this.dog[whichDog, vetVerification];
-};
-
-userSchema.methods.getStatus = function(){
-    return this.status;
-};
-
-userSchema.methods.getLocation = function(){
-    return this.homeAddress;//this will change in the future once location is set up.
-};
-
-
-
 
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';
 
 module.exports = mongodb.resource(MODEL_NAME, userSchema, COLLECTION_NAME);
-
-var userMatchModel = mongodb.model(MODEL_NAME, userSchema, COLLECTION_NAME);
