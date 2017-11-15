@@ -1,32 +1,9 @@
-//user-schema.js
+//registry-tests.js
 
 var blueprint = require ('@onehilltech/blueprint')
   , expect    = require ('chai').expect
   ;
 
-//var appPath = require('../../') ;
-
-
-describe ('NoPageReturn', function () {
-  it ('should return 404 when a nonexistent page is requested', function (done) {
-    blueprint.testing.request ()
-      .get ('/hellodoc')
-      .expect (404, done);
-  });
-});
-
-
-
-//testing route localhost/v1/users/id:[id]
-/*
-describe ( "SchemaTestExist", function() {
-  it ('Should return a 200 http code when a valid request is made.', function (done) {
-    blueprint.testing.request ()
-      .get ('/v1/user/:id')
-      .expect (500, done);
-  });
-});
-*/
 describe ( "RegTestReturn", function() {
   it ('Should return a 200 http code when a valid registration is made.', function (done) {
     blueprint.testing.request ()
