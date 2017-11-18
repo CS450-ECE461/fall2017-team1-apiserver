@@ -14,11 +14,20 @@ blueprint.controller (MatchController, blueprint.ResourceController);
 
 
 
-MatchController.prototype.updateCriteria = function(){
+
+
+MatchController.prototype.updateStatus = function(){
     return function(req, res){
-        //nothing for now.
+        // update user and return updated model
+        User.findByIdAndUpdate({_id: req.params.id}, {statusC: req.body.status}, {new: true}, function(err, user){
+            if(err){ return res.sendStatus(500); }
+            if(user == null) {return res.sendStatus(404);}
+
+            return res.sendStatus(204);
+        });
+
     }
-}
+};
 
 
 module.exports = exports = MatchController;

@@ -2,6 +2,14 @@
 
 const dab = require ('@onehilltech/dab');
 
+const userIds = [
+    "5a069b13bd9143509882c581",
+    "5a069b13bd9143509882c583",
+    "5a069b13bd9143509882c584",
+    "5a069b13bd9143509882c582",
+    "5a069b13bd9143509882c585"
+];
+
 // stubbing out the basic user profiles
 module.exports = {
 
@@ -12,6 +20,7 @@ module.exports = {
       var times = Math.floor(Math.random() * 4) + 1;
 
       return callback(null, {
+          matchCriteriaId: userIds[i],
           firstName: 'firsty Namey ' + i,
           lastName: 'lasty Namey' + i,
           email: 'account' + i + '@email.com',
@@ -47,8 +56,8 @@ module.exports = {
             dogSizeC: i + 'feet',
             vetVerificationC: false,
             statusC: i + ' single : (' ,
-            locationC: i + i
-
+            locationC: i + i,
+            potentialMatchesQueue: userIds[i]
         });
     })
 };

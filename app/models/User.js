@@ -64,6 +64,10 @@ userSchema.methods.checkEmail = function(email){
     return this.email == email;
 };
 
+userSchema.methods.getMatchCriteriaID = function(){
+    //
+};
+
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
 };

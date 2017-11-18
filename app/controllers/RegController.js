@@ -40,19 +40,19 @@ RegController.prototype.createUser = function(){
 
     return {
         validate: function (req, callback) {
-            req.checkBody ('FirstName', 'required').notEmpty ();
-            req.checkBody ('LastName', 'required').notEmpty ();
-            req.checkBody ('Email', 'required').notEmpty ();
-            req.checkBody ('Password', 'required').notEmpty ();
+            req.checkBody ('firstName', 'required').notEmpty ();
+            req.checkBody ('lastName', 'required').notEmpty ();
+            req.checkBody ('email', 'required').notEmpty ();
+            req.checkBody ('password', 'required').notEmpty ();
 
             return callback (req.validationErrors (true));
         },
 
         sanitize: function (req, callback) {
-            req.sanitizeBody ('FirstName').escape ().trim ();
-            req.sanitizeBody ('LastName').escape ().trim ();
-            req.sanitizeBody ('Email').escape ().trim ();
-            req.sanitizeBody ('Password').escape ().trim ();
+            req.sanitizeBody ('firstName').escape ().trim ();
+            req.sanitizeBody ('lastName').escape ().trim ();
+            req.sanitizeBody ('email').escape ().trim ();
+            req.sanitizeBody ('password').escape ().trim ();
 
             return callback (req.validationErrors (true));
         },
@@ -60,10 +60,10 @@ RegController.prototype.createUser = function(){
         execute: function (req, res, callback) {
             var newUser = new User({
 
-                firstName: req.body.FirstName,
-                lastName: req.body.LastName,
-                email: req.body.Email,
-                password: req.body.Password,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password,
                 gender: 'N/A',
                 bio: 'N/A',
                 homeAddress: 'N/A',

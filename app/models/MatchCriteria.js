@@ -27,9 +27,7 @@ var criteriaSchema = new mongodb.Schema({
 
 
 //criteria model methods
-
 //We might not need all the rest of the getters/setters, but have them here for now.
-
 
 criteriaSchema.methods.getDogMinAge = function(){
     return this.minAgeOfDog;
