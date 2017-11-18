@@ -3,6 +3,7 @@
 const dab = require ('@onehilltech/dab'),
     gatekeeper = require('@onehilltech/blueprint-gatekeeper'),
     mongodb = require ('@onehilltech/blueprint-mongodb'),
+    env = require('../../configs/environment.config'),
     ObjectId = mongodb.Types.ObjectId;
 
 
@@ -64,12 +65,11 @@ module.exports = {
     clients: dab.times (1, function (i, opts, callback) {
         var clientName = 'supdog-web';
         var client = {
-            _id: process.env.CLIENT_ID,
+            _id: env.environment.client_id,
             name: clientName,
-            secret: process.env.CLIENT_SECRET,
+            secret: env.environment.client_id,
             email: clientName + '@no-reply.com',
-            scope: scopes[i],
-
+            scope: scopes[i]
         };
 
         return callback (null, client);
