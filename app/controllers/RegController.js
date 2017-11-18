@@ -3,6 +3,7 @@ var blueprint = require ('@onehilltech/blueprint'),
     ResourceController = mongodb.ResourceController,
     HttpError = blueprint.errors.HttpError,
     User = require('../models/User'),
+    MatchCriteria = require('../models/MatchCriteria'),
     util = require ('util');
 const sendmail = require('sendmail')();
 
@@ -34,7 +35,7 @@ function sendEmail(userEmail) {
 
 
 
-//Currently inserts user into database, by default they are unactivated
+//inserts user into database, by default they are unactivated
 RegController.prototype.createUser = function(){
     var self = this;
 
@@ -58,8 +59,23 @@ RegController.prototype.createUser = function(){
         },
 
         execute: function (req, res, callback) {
-            var newUser = new User({
 
+            var newMatchCriteria = new MatchCriteria({
+                minAgeOfDog: 1,
+                maxAgeOfDog: 10,
+                dogSizeC: 'medium',
+                vetVerificationC: false,
+                statusC: 'happy',
+                locationC: 'indy'
+            });
+            newMatchCriteria.save(function(err, newMatchCriteria) {
+                if (err) {
+                    return callback(new HttpError (500, 'Failed to save matchCriteria'));
+                }
+            });
+
+            var newUser = new User({
+                matchCriteriaId: newMatchCriteria.id,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
@@ -82,13 +98,18 @@ RegController.prototype.createUser = function(){
                     vetVerification: ['N/A']
                 }]
             });
+
             newUser.save(function(err, newUser) {
-                if (err) return callback(new HttpError (500, 'Failed to save user'));
+                if (err) {
+                    return callback(new HttpError (500, 'Failed to save user'));
+                }
                 res.status(200).json(newUser.id);
                 return callback(null);
             });
+
             //sending confirmation email
             sendEmail(req.body.Email);
+
         }
     };
 };

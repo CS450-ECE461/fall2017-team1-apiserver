@@ -9,7 +9,7 @@ const blueprint = require ('@onehilltech/blueprint'),
 // User Schema
 var userSchema = new mongodb.Schema({
 
-    matchCriteriaId: {type: ObjectId, required: true, ref: MatchCriteria._id, const: true },
+    matchCriteriaId: {type: ObjectId, required: true, ref: MatchCriteria, const: true },
 
     firstName: {type: String, required: true, trim: true},
 
