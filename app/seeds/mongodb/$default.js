@@ -33,8 +33,7 @@ module.exports = {
       var times = Math.floor(Math.random() * 4) + 1;
       var i = 0;
       return callback(null, {
-          _id: userIds[account.number],
-          accountId: account._id,
+          _id: account._id,
           firstName: 'firsty Namey ',
           lastName: account.username,
           gender: 'maleOrFemaleorShemale',
@@ -79,11 +78,11 @@ module.exports = {
     accounts: dab.times (5, function (i, opts, callback) {
         var username = 'tester' + i;
         var account = {
+            _id:userIds[i],
             created_by: dab.ref ('clients.0'),
             username: username,
             password: username,
-            email: username + '@no-reply.com',
-            number: i
+            email: username + '@no-reply.com'
         };
 
         return callback (null, account);

@@ -5,18 +5,15 @@ const blueprint = require ('@onehilltech/blueprint'),
       ObjectId = mongodb.Schema.Types.ObjectId,
       Account = blueprint.app.models.Account;
 
-console.log(Account);
-
 // User Schema
 var userSchema = new mongodb.Schema({
 
-    accountId: {type: ObjectId, required: true, ref: Account._id, const: true },
 
     firstName: {type: String, required: true, trim: true},
 
     lastName: {type: String, required: true, trim: true},
 
-    gender: {type: String, required: true, trim: true},
+    gender: {type: String, trim: true},
 
     bio: {type: String, trim: true},
 
@@ -25,7 +22,7 @@ var userSchema = new mongodb.Schema({
     // the current status of the dog(s)
     status: {type: String,  trim: true},
 
-    birthday: {type: Date, required: true, trim: true},
+    birthday: {type: Date, trim: true},
 
     activated: {type: Boolean},
 
