@@ -9,14 +9,10 @@ const corsOptions = {
 };
 
 module.exports = {
-
-    '/v1': {
-        policy: 'gatekeeper.auth.bearer',
-        use: [
-            cors (corsOptions),
-        ]
-    },
-
+    '/v1': [
+        cors(corsOptions),
+    ],
+   
     '/gatekeeper': [
         cors (corsOptions),
         blueprint('router://@onehilltech/blueprint-gatekeeper:v1')
