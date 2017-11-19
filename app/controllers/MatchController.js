@@ -36,28 +36,22 @@ MatchController.prototype.updateCriteria = function(){
 };
 
 
-module.exports = exports = MatchController;
-/*
-
-MatchController.prototype.updateCriteria = function(){
-    console.log('made it here------------------------------ 1');
+MatchController.prototype.findMatch = function(){
     return function(req, res){
-        console.log('made it here------------------------------ 2');
-        var criteriaID = '0';
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
             if(person == null) { return res.sendStatus(404); }
-            criteriaID = person.getMatchCriteriaID();
-            // update criteria and return updated model
-            MatchCriteria.findByIdAndUpdate({_id: criteriaID}, {minAgeOfDog: req.body.minAgeOfDog}, {maxAgeOfDog: req.body.maxAgeOfDog},
-                {dogSizeC: req.body.dogSize}, {vetVerificationC: req.body.vetVerification}, {statusC: req.body.status}, {new: true}, function(err, criteria){
-                    if(err){ return res.sendStatus(500); }
-                    if(criteria == null) {return res.sendStatus(404);}
-                    return res.status(200).json(criteria);
-                });
+            var criteriaID = person.getMatchCriteriaID();
 
+            MatchCriteria.findById(criteriaID, function(err, criteria){
+                if(err){ return res.sendStatus(500); }
+                if(criteria == null) {return res.sendStatus(404);}
+                criteria.save();
+                return res.status(200).json(criteria);
+            });
         });
-
-
     }
-};*/
+};
+
+
+module.exports = exports = MatchController;

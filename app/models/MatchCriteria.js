@@ -25,57 +25,52 @@ var criteriaSchema = new mongodb.Schema({
 
 
 
+//built in queue methods
+/******************************************************************
+ * queue.push("SOMETHING") is same as enqueue.
+ * queue.shift() is same as dequeue. It pops off the top element.
+ *******************************************************************/
+criteriaSchema.methods.insertUserID = function(aObjectID){
+    this.potentialMatchesQueue.push(aObjectID);
+};
+criteriaSchema.methods.popUserID = function(){
+    return this.potentialMatchesQueue.shift();
+};
+//Returns the very 1st element in the queue
+criteriaSchema.methods.topUserID = function(){
+    if(this.potentialMatchesQueue[0] == null){
+        return 0;
+    }else{
+        return this.potentialMatchesQueue[0];
+    }
 
-//criteria model methods
-//We might not need all the rest of the getters/setters, but have them here for now.
+};
+criteriaSchema.methods.getNumOfMatches = function(){
+    return this.potentialMatchesQueue.length();
+};
 
+
+//We might not need all the rest of the getters but have them here for now.
 criteriaSchema.methods.getDogMinAge = function(){
     return this.minAgeOfDog;
 };
-
 criteriaSchema.methods.getDogMaxAge = function(){
     return this.maxAgeOfDog;
 };
-
 criteriaSchema.methods.getDogSize = function(){
     return this.dogSizeC;
 };
-
 criteriaSchema.methods.getDogVerification = function(){
     return this.vetVerificationC;
 };
-
 criteriaSchema.methods.getStatus = function(){
     return this.statusC;
 };
-
 criteriaSchema.methods.getLocation = function(){
     return this.locationC;
 };
 
-criteriaSchema.methods.setDogMinAge = function(){
-    return this.minAgeOfDog;
-};
 
-criteriaSchema.methods.setDogMaxAge = function(){
-    return this.maxAgeOfDog;
-};
-
-criteriaSchema.methods.setDogSize = function(){
-    return this.dogSizeC;
-};
-
-criteriaSchema.methods.setDogVerification = function(){
-    return this.vetVerificationC;
-};
-
-criteriaSchema.methods.setStatus = function(){
-    return this.statusC;
-};
-
-criteriaSchema.methods.setLocation = function(){
-    return this.locationC;
-};
 
 
 const COLLECTION_NAME = 'MatchCriterias';
