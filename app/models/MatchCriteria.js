@@ -34,7 +34,12 @@ criteriaSchema.methods.insertUserID = function(aObjectID){
     this.potentialMatchesQueue.push(aObjectID);
 };
 criteriaSchema.methods.popUserID = function(){
-    return this.potentialMatchesQueue.shift();
+    if(this.potentialMatchesQueue.length == 0){
+        return 0;
+    }else{
+        return this.potentialMatchesQueue.shift();
+    }
+
 };
 //Returns the very 1st element in the queue
 criteriaSchema.methods.topUserID = function(){
@@ -46,7 +51,7 @@ criteriaSchema.methods.topUserID = function(){
 
 };
 criteriaSchema.methods.getNumOfMatches = function(){
-    return this.potentialMatchesQueue.length();
+    return this.potentialMatchesQueue.length;
 };
 
 
