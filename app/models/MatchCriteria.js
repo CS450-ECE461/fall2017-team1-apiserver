@@ -20,29 +20,33 @@ var criteriaSchema = new mongodb.Schema({
 
     locationC: {type: String, trim: true},//this will change in the future once location is set up.
 
-    potentialMatchesQueue :{type: [ObjectId], ref: User}
+    lastInsertedId: {type: Number, default: 0},
+
+    potentialMatchesQueue:{type: [ObjectId], ref: User}
     });
 
 
 
-//built in queue methods
-/******************************************************************
- * queue.push("SOMETHING") is same as enqueue.
- * queue.shift() is same as dequeue. It pops off the top element.
- *******************************************************************/
-criteriaSchema.methods.insertUserID = function(aObjectID){
+
+//queue.push("SOMETHING") is same as enqueue.
+criteriaSchema.methods.lowPriorityInsertId = function(aObjectID){
     this.potentialMatchesQueue.push(aObjectID);
 };
-criteriaSchema.methods.popUserID = function(){
+
+//queue.shift() is same as dequeue. It pops off the top element.
+criteriaSchema.methods.popUserId = function(){
     if(this.potentialMatchesQueue.length == 0){
         return 0;
     }else{
+        if(this.lastInsertedId > 0){
+            this.lastInsertedId--;
+        }
         return this.potentialMatchesQueue.shift();
     }
-
 };
+
 //Returns the very 1st element in the queue
-criteriaSchema.methods.topUserID = function(){
+criteriaSchema.methods.topUserId = function(){
     if(this.potentialMatchesQueue[0] == null){
         return 0;
     }else{
@@ -50,9 +54,22 @@ criteriaSchema.methods.topUserID = function(){
     }
 
 };
+
 criteriaSchema.methods.getNumOfMatches = function(){
     return this.potentialMatchesQueue.length;
 };
+
+criteriaSchema.methods.highPriorityInsertId = function (aObjectID) {
+    this.potentialMatchesQueue.splice(this.lastInsertedId, 0, aObjectID);
+    console.log(' estoy en highPriorityinsertId');
+    console.log(this.lastInsertedId);
+    this.lastInsertedId++;
+    console.log(this.lastInsertedId);
+    console.log(' estoy en highPriorityinsertId');
+};
+
+
+
 
 
 //We might not need all the rest of the getters but have them here for now.

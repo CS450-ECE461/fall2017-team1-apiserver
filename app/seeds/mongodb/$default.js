@@ -57,6 +57,7 @@ module.exports = {
             vetVerificationC: false,
             statusC: i + ' single : (' ,
             locationC: i + i,
+            lastInsertedId: 0,
             potentialMatchesQueue: userIds[i]
         });
     })
