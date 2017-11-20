@@ -4,21 +4,17 @@ var blueprint = require ('@onehilltech/blueprint')
   , expect    = require ('chai').expect
   ;
 
-//Maybe there is a way to refer to the username and password in question rather than just hard coding it.
-//TODO: look into that.
-
 describe ( 'LoginTestReturn', function() {
   it ('Should return a 200 http code when a valid registration is made.', function (done) {
     blueprint.testing.request ()
       .post ('/gatekeeper/v1/oauth2/token')
       .send ({
         'grant_type': 'password',
-        'client_id': '5a03e9fdd2900e1af884c34f',
-        'username': 'tester1',
-        'password': 'tester1'
+        'client_id': blueprint.app.configs.environment.environment.client_id,
+        'username': blueprint.app.seeds.$default.accounts[0].username,
+        'password': blueprint.app.seeds.$default.accounts[0].username
       })
       .expect (200, done);
-        
   });
 });
 
@@ -28,9 +24,9 @@ describe ( 'LoginTestContent', function() {
       .post ('/gatekeeper/v1/oauth2/token')
       .send ({
         'grant_type': 'password',
-        'client_id': '5a03e9fdd2900e1af884c34f',
-        'username': 'tester1',
-        'password': 'tester1'
+        'client_id': blueprint.app.configs.environment.environment.client_id,
+        'username': blueprint.app.seeds.$default.accounts[0].username,
+        'password': blueprint.app.seeds.$default.accounts[0].username
       })
       .expect (200)
       .end(function(err, res){
@@ -41,6 +37,5 @@ describe ( 'LoginTestContent', function() {
         expect(res.body.refresh_token).to.not.equal(null);
         done();      
       });
-        
   });
 });
