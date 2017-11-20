@@ -18,6 +18,20 @@ describe ( 'LoginTestReturn', function() {
   });
 });
 
+describe ( 'LoginTestReturn', function() {
+  it ('Should return a 400 http code when a bad request is made.', function (done) {
+    blueprint.testing.request ()
+      .post ('/gatekeeper/v1/oauth2/token')
+      .send ({
+        'grant_type': 'password',
+        'client_id': blueprint.app.configs.environment.environment.client_id,
+        'username': blueprint.app.seeds.$default.accounts[0].username,
+        'password': blueprint.app.seeds.$default.accounts[0].username + "No"
+      })
+      .expect (400, done);
+  });
+});
+
 describe ( 'LoginTestContent', function() {
   it ('Should return an access token and refresh token when given valid credentials.', function (done) {
     blueprint.testing.request ()
