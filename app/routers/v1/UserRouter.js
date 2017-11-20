@@ -16,7 +16,11 @@ module.exports = exports = {
             post: {action: 'UserController@updateStatus' }
         },
         '/criteria': {
+            get: {action: 'MatchController@getCriteria'},
             put: {action: 'MatchController@updateCriteria'}
+        },
+        '/criteriaStatus': {
+            put: {action: 'MatchController@updateStatus'}
         },
         '/findMatch': {
             put: {action: 'MatchController@findMatch'}
