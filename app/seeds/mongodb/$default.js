@@ -60,6 +60,18 @@ module.exports = {
 
   }),
 
+
+    // let user 2 be friends with user 0 and 1
+    friend: dab.times(2, function(i, opts, callback){
+        var friend = {
+            user1: dab.ref ('users.2'),
+            user2: dab.ref (`users.${i}`)
+        };
+
+        return callback (null, friend);
+    }),
+
+
     // single web access client
     clients: dab.times (1, function (i, opts, callback) {
         var clientName = 'supdog-web';
