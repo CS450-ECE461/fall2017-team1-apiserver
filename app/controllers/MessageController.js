@@ -15,7 +15,8 @@ blueprint.controller (MessageController, blueprint.ResourceController);
 MessageController.prototype.getConversation = function(){
     return function(req, res){
         // return both messages to and from a friend
-        Message.find({$and:[
+        console.log(req.query);
+        Message.find({$or:[
             {$and: [{to: req.params.id}, {from: req.query.userId}]},
             {$and: [{to: req.query.userId}, {from: req.params.id}]}
         ]})
@@ -32,24 +33,19 @@ MessageController.prototype.getConversation = function(){
 // create a new message from one user to another
 MessageController.prototype.createMessage = function(){
     return function(req, res){
-        console.log(req.body);
-
         var newMessage = new Message({
             to: req.params.id,
-            from: req.body.user2,
+            from: req.body.to,
             message: req.body.message,
             timeStamp: Date.now()
         });
 
         newMessage.save(function(err, message){
-            if(err){return res.sendStatus(500)}
-
-            console.log(message);
-            messaging.emit ('message.created', message);
+            if(err){ return res.sendStatus(500); }
+          
+            messaging.emit ('message.create', message);
             return res.sendStatus(201);
-
         });
-
     }
 }
 
