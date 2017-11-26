@@ -24,9 +24,10 @@ const scopes = [
 
 
 
-
 // stubbing out the basic user profiles
 module.exports = {
+
+  
 
     users: dab.map (dab.get ('accounts'), function (account, opts, callback) {
 
@@ -71,7 +72,14 @@ module.exports = {
         return callback (null, friend);
     }),
 
-
+    // conversation between user0 and user1
+    message: [
+        {to: dab.ref('users.0'), from: dab.ref('users.1'), message:'hello', timeStamp:Date.UTC(2017, 11, 27, 11, 34)},
+        {to: dab.ref('users.1'), from: dab.ref('users.0'), message:'why hello', timeStamp:Date.UTC(2017, 11, 27, 11, 45)},
+        {to: dab.ref('users.0'), from: dab.ref('users.1'), message:'Lovely weather isnt it?', timeStamp:Date.UTC(2017, 11, 27, 12, 4)},
+        {to: dab.ref('users.1'), from: dab.ref('users.0'), message:'I suppose', timeStamp:Date.UTC(2017, 11, 28, 6, 13)}
+    ],
+    
     // single web access client
     clients: dab.times (1, function (i, opts, callback) {
         var clientName = 'supdog-web';
