@@ -61,35 +61,7 @@ criteriaSchema.methods.getNumOfMatches = function(){
 
 criteriaSchema.methods.highPriorityInsertId = function (aObjectID) {
     this.potentialMatchesQueue.splice(this.lastInsertedId, 0, aObjectID);
-    console.log(' estoy en highPriorityinsertId');
-    console.log(this.lastInsertedId);
     this.lastInsertedId++;
-    console.log(this.lastInsertedId);
-    console.log(' estoy en highPriorityinsertId');
-};
-
-
-
-
-
-//We might not need all the rest of the getters but have them here for now.
-criteriaSchema.methods.getDogMinAge = function(){
-    return this.minAgeOfDog;
-};
-criteriaSchema.methods.getDogMaxAge = function(){
-    return this.maxAgeOfDog;
-};
-criteriaSchema.methods.getDogSize = function(){
-    return this.dogSizeC;
-};
-criteriaSchema.methods.getDogVerification = function(){
-    return this.vetVerificationC;
-};
-criteriaSchema.methods.getStatus = function(){
-    return this.statusC;
-};
-criteriaSchema.methods.getLocation = function(){
-    return this.locationC;
 };
 
 

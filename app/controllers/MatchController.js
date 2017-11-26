@@ -30,7 +30,7 @@ MatchController.prototype.updateCriteria = function(){
                     if(err){ return res.sendStatus(500); }
                     if(criteria == null) {return res.sendStatus(404);}
                     criteria.save();
-                    return res.status(200).json(criteria);
+                    return res.status(200);
                 });
         });
     }
@@ -66,7 +66,7 @@ MatchController.prototype.updateStatus = function(){
                 if(err){ return res.sendStatus(500); }
                 if(criteria == null) {return res.sendStatus(404);}
                 criteria.save();
-                return res.status(200).json(criteria);
+                return res.status(200);
             });
         });
     }
@@ -84,6 +84,10 @@ MatchController.prototype.findMatch = function(){
             MatchCriteria.findById(criteriaID, function(err, criteria){
                 if(err){ return res.sendStatus(500); }
                 if(criteria == null) {return res.sendStatus(404);}
+                criteria.lowPriorityInsertId("000000000000000000000001");
+                criteria.lowPriorityInsertId("000000000000000000000002");
+                criteria.lowPriorityInsertId("000000000000000000000003");
+                criteria.highPriorityInsertId("000000000000000000000003");
                 criteria.save();
                 return res.status(200).json(criteria);
             });

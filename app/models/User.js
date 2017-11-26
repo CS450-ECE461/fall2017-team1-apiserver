@@ -1,10 +1,10 @@
 'use strict';
 
 const blueprint = require ('@onehilltech/blueprint'),
-    mongodb = require ('@onehilltech/blueprint-mongodb'),
-    ObjectId = mongodb.Schema.Types.ObjectId,
-    MatchCriteria = require('./MatchCriteria');
-
+      mongodb = require ('@onehilltech/blueprint-mongodb'),
+      ObjectId = mongodb.Schema.Types.ObjectId,
+      MatchCriteria = require('./MatchCriteria'),
+      Account = blueprint.app.models.Account;
 
 // User Schema
 var userSchema = new mongodb.Schema({
@@ -15,11 +15,7 @@ var userSchema = new mongodb.Schema({
 
     lastName: {type: String, required: true, trim: true},
 
-    email: {type: String, required: true, unique: true, trim: true},
-
-    password: {type: String, required: true, hidden: true},
-
-    gender: {type: String, required: true, trim: true},
+    gender: {type: String, trim: true},
 
     bio: {type: String, trim: true},
 
@@ -28,7 +24,7 @@ var userSchema = new mongodb.Schema({
     // the current status of the dog(s)
     status: {type: String,  trim: true},
 
-    birthday: {type: Date, required: true, trim: true},
+    birthday: {type: Date, trim: true},
 
     activated: {type: Boolean},
 
@@ -56,14 +52,6 @@ var userSchema = new mongodb.Schema({
 });
 
 
-userSchema.methods.checkPassword = function(password){
-    return this.password == password;
-};
-
-userSchema.methods.checkEmail = function(email){
-    return this.email == email;
-};
-
 userSchema.methods.getMatchCriteriaID = function(){
     return this.matchCriteriaId;
 };
@@ -86,8 +74,6 @@ userSchema.methods.updateAct = function(varBool){
 userSchema.methods.getActivation = function(){
     return this.activated;
 };
-
-
 
 
 const COLLECTION_NAME = 'users';

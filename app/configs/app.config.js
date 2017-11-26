@@ -1,3 +1,3 @@
 module.exports = exports = {
-  name : 'api-server'
+  name : 'supdog-api-server'
 };
