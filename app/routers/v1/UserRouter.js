@@ -23,7 +23,7 @@ module.exports = exports = {
             put: {action: 'MatchController@updateStatus'}
         },
         '/findMatch': {
-            put: {action: 'MatchController@findMatch'}
+            post: {action: 'MatchController@findMatch'}
         }
     }
 };
