@@ -9,7 +9,7 @@ module.exports = exports = {
 
         '/dogs/:dogId': {
             get: {action: 'UserController@getDog'},
-            put: {action: 'UserController@updateDog'},
+            put: {action: 'UserController@updateDog'}
         },
 
         '/status': {
@@ -30,6 +30,7 @@ module.exports = exports = {
         },
 
         '/uploadImage': {
+            get: {view: 'ImageUploadTest.pug'},
             post: {action: 'ImageController@uploadImage'}
         }
     }

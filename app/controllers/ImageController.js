@@ -1,17 +1,23 @@
 var blueprint = require ('@onehilltech/blueprint'),
+    mongodb = ('@onehilltech/blueprint-mongodb'),
+    ResourceController = mongodb.ResourceController,
     util = require ('util'),
+    Image = require('../models/Image'),
     fs = require ('fs'),
     winston = require ('winston');
 
+
 function ImageController () {
-    blueprint.BaseController.call (this);
+    blueprint.ResourceController.call (this, {name: 'image', model: Image});
 }
 
-blueprint.controller (ImageController);
+blueprint.controller (ImageController, blueprint.ResourceController);
+
+
 
 ImageController.prototype.uploadImage = function () {
     return blueprint.app.server.upload.singleFile ('image', function (req, res) {
-        return res.render ('helloworld.pug', {file: req.file});
+        return res.render ('ImageUploadTest.pug', {file: req.file});
     });
 };
 
