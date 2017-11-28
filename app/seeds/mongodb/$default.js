@@ -71,7 +71,7 @@ module.exports = {
             statusC: i + ' single : (' ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: userIds[i]
+            potentialMatchesQueue: {"id":userIds[i]}
         });
     }),
 

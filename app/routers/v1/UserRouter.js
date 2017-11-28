@@ -13,15 +13,13 @@ module.exports = exports = {
         },
 
         '/status': {
-            post: {action: 'UserController@updateStatus' }
+            put: {action: 'MatchController@updateStatus'}
         },
         '/criteria': {
             get: {action: 'MatchController@getCriteria'},
             put: {action: 'MatchController@updateCriteria'}
         },
-        '/criteriaStatus': {
-            put: {action: 'MatchController@updateStatus'}
-        },
+
         '/findMatch': {
             post: {action: 'MatchController@findMatch'}
         }
