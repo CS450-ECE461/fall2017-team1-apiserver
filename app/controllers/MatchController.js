@@ -1,6 +1,7 @@
 var blueprint = require ('@onehilltech/blueprint'),
     mongodb = ('@onehilltech/blueprint-mongodb'),
     ResourceController = mongodb.ResourceController,
+    messaging = blueprint.messaging
     User = require('../models/User'),
     MatchCriteria = require('../models/MatchCriteria'),
     util = require ('util');
@@ -26,7 +27,7 @@ MatchController.prototype.updateCriteria = function(){
 
             // update criteria and return updated model
             MatchCriteria.findByIdAndUpdate({_id: criteriaID}, {minAgeOfDog: req.body.minAgeOfDog, maxAgeOfDog: req.body.maxAgeOfDog,
-                dogSizeC: req.body.dogSizeC, vetVerificationC: req.body.vetVerificationC, statusC: req.body.statusC, locationC: req.body.locationC}, {new: true}, function(err, criteria){
+                dogSizeC: req.body.dogSizeC, vetVerificationC: req.body.vetVerificationC, status: req.body.status, locationC: req.body.locationC}, {new: true}, function(err, criteria){
                     if(err){ return res.sendStatus(500); }
                     if(criteria == null) {return res.sendStatus(404);}
                     criteria.save();
@@ -59,14 +60,14 @@ MatchController.prototype.updateStatus = function(){
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
             if(person == null) { return res.sendStatus(404); }
-            var criteriaID = person.getMatchCriteriaID();
 
-            // update status and return updated model
-            MatchCriteria.findByIdAndUpdate({_id: criteriaID}, {statusC: req.body.statusC}, {new: true}, function(err, criteria){
+            // update status and send off event to search db for matches based on criteria
+            MatchCriteria.findByIdAndUpdate({_id: person.matchCriteriaId}, {status: req.body.status}, {new: true}, function(err, criteria){
                 if(err){ return res.sendStatus(500); }
                 if(criteria == null) {return res.sendStatus(404);}
-                criteria.save();
-                return res.status(200);
+
+                messaging.emit ('status.update', criteria);
+                return res.sendStatus(200);
             });
         });
     }

@@ -64,11 +64,12 @@ module.exports = {
 
     MatchCriterias: dab.times (5, function (i, opts, callback) {
         return callback(null, {
+            _id:userIds[i],
             minAgeOfDog: i,
             maxAgeOfDog: 2 + i,
             dogSizeC: i + 'feet',
             vetVerificationC: false,
-            statusC: i + ' single : (' ,
+            status: i + ' single : (' ,
             locationC: i + i,
             lastInsertedId: 0,
             potentialMatchesQueue: {"id":userIds[i]}
