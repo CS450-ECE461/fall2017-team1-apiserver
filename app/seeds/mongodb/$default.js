@@ -34,7 +34,6 @@ module.exports = {
       var i = 0;
       return callback(null, {
           _id: account._id,
-          matchCriteriaId: userIds[i],
           firstName: 'firsty Namey ',
           lastName: account.username,
           gender: 'maleOrFemaleorShemale',
@@ -64,7 +63,7 @@ module.exports = {
 
     MatchCriterias: dab.times (5, function (i, opts, callback) {
         return callback(null, {
-            _id:userIds[i],
+            _id: dab.ref(`users.${i}`),
             minAgeOfDog: i,
             maxAgeOfDog: 2 + i,
             dogSizeC: i + 'feet',

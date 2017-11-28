@@ -9,8 +9,6 @@ const blueprint = require ('@onehilltech/blueprint'),
 // User Schema
 var userSchema = new mongodb.Schema({
 
-    matchCriteriaId: {type: ObjectId, required: true, ref: MatchCriteria, const: true },
-
     firstName: {type: String, required: true, trim: true},
 
     lastName: {type: String, required: true, trim: true},
@@ -48,10 +46,6 @@ var userSchema = new mongodb.Schema({
     }]
 });
 
-
-userSchema.methods.getMatchCriteriaID = function(){
-    return this.matchCriteriaId;
-};
 
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
