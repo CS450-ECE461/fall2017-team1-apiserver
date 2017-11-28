@@ -16,13 +16,13 @@ var criteriaSchema = new mongodb.Schema({
 
     vetVerificationC: {type: Boolean, trim: true},
 
-    statusC: {type: String, trim: true},
+    status: {type: String, trim: true},
 
     locationC: {type: String, trim: true},//this will change in the future once location is set up.
 
     lastInsertedId: {type: Number, default: 0},
 
-    potentialMatchesQueue:{type: [ObjectId], ref: User}
+    potentialMatchesQueue:{type: [{"id":ObjectId, "liked":Boolean}], default: {"liked": false}, ref: User}
     });
 
 

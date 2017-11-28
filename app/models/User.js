@@ -21,9 +21,6 @@ var userSchema = new mongodb.Schema({
 
     homeAddress: {type: String,  trim: true},
 
-    // the current status of the dog(s)
-    status: {type: String,  trim: true},
-
     birthday: {type: Date, trim: true},
 
     activated: {type: Boolean},
@@ -47,7 +44,7 @@ var userSchema = new mongodb.Schema({
 
         fixed: {type: String,  trim: true},
 
-        vetVerification: {type: [String], trim: true}
+        vetVerification: {type: Boolean, trim: true}
     }]
 });
 
