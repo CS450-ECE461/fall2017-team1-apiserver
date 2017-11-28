@@ -6,9 +6,14 @@ const blueprint = require ('@onehilltech/blueprint'),
 
 
 var imageSchema = new mongodb.Schema({
-    //datatype:buffer: Allows us to store our image as data in the form of arrays.
-    //image: {data: Buffer, contentType: String},
-    image: {type: ObjectId, required: true}
+    url : String,
+    name : String,
+    userId : String,
+    created : Date,
+    gps : {
+        longitude : Number,
+        latitude : Number
+    }
 });
 
 const COLLECTION_NAME = 'images';
