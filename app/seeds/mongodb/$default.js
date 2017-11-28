@@ -34,6 +34,7 @@ module.exports = {
       var i = 0;
       return callback(null, {
           _id: account._id,
+          matchCriteriaId: userIds[i],
           firstName: 'firsty Namey ',
           lastName: account.username,
           gender: 'maleOrFemaleorShemale',
@@ -59,6 +60,20 @@ module.exports = {
       });
 
   }),
+
+
+    MatchCriterias: dab.times (5, function (i, opts, callback) {
+        return callback(null, {
+            minAgeOfDog: i,
+            maxAgeOfDog: 2 + i,
+            dogSizeC: i + 'feet',
+            vetVerificationC: false,
+            statusC: i + ' single : (' ,
+            locationC: i + i,
+            lastInsertedId: 0,
+            potentialMatchesQueue: userIds[i]
+        });
+    }),
 
 
     // let user 2 be friends with user 0 and 1

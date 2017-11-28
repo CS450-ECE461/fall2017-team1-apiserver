@@ -3,11 +3,13 @@
 const blueprint = require ('@onehilltech/blueprint'),
       mongodb = require ('@onehilltech/blueprint-mongodb'),
       ObjectId = mongodb.Schema.Types.ObjectId,
+      MatchCriteria = require('./MatchCriteria'),
       Account = blueprint.app.models.Account;
 
 // User Schema
 var userSchema = new mongodb.Schema({
 
+    matchCriteriaId: {type: ObjectId, required: true, ref: MatchCriteria, const: true },
 
     firstName: {type: String, required: true, trim: true},
 
@@ -50,10 +52,21 @@ var userSchema = new mongodb.Schema({
 });
 
 
+userSchema.methods.getMatchCriteriaID = function(){
+    return this.matchCriteriaId;
+};
+
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
 };
 
+userSchema.methods.getAgeOfOwner = function(){
+    var now = new Date();
+    var age = now.getFullYear() - this.birthday.getFullYear();
+    return age;
+};
+
+//Registration Methods
 userSchema.methods.updateAct = function(varBool){
     this.activated = varBool;
 };

@@ -3,6 +3,7 @@ var blueprint = require ('@onehilltech/blueprint'),
     ResourceController = mongodb.ResourceController,
     HttpError = blueprint.errors.HttpError,
     User = require('../models/User'),
+    MatchCriteria = require('../models/MatchCriteria'),
     util = require ('util');
 const sendmail = require('sendmail')();
 
@@ -34,36 +35,51 @@ function sendEmail(userEmail) {
 
 
 
-//Currently inserts user into database, by default they are unactivated
+//inserts user into database, by default they are unactivated
 RegController.prototype.createUser = function(){
     var self = this;
 
     return {
         validate: function (req, callback) {
-            req.checkBody ('FirstName', 'required').notEmpty ();
-            req.checkBody ('LastName', 'required').notEmpty ();
-            req.checkBody ('Email', 'required').notEmpty ();
-            req.checkBody ('Password', 'required').notEmpty ();
+            req.checkBody ('firstName', 'required').notEmpty ();
+            req.checkBody ('lastName', 'required').notEmpty ();
+            req.checkBody ('email', 'required').notEmpty ();
+            req.checkBody ('password', 'required').notEmpty ();
 
             return callback (req.validationErrors (true));
         },
 
         sanitize: function (req, callback) {
-            req.sanitizeBody ('FirstName').escape ().trim ();
-            req.sanitizeBody ('LastName').escape ().trim ();
-            req.sanitizeBody ('Email').escape ().trim ();
-            req.sanitizeBody ('Password').escape ().trim ();
+            req.sanitizeBody ('firstName').escape ().trim ();
+            req.sanitizeBody ('lastName').escape ().trim ();
+            req.sanitizeBody ('email').escape ().trim ();
+            req.sanitizeBody ('password').escape ().trim ();
 
             return callback (req.validationErrors (true));
         },
 
         execute: function (req, res, callback) {
-            var newUser = new User({
 
-                firstName: req.body.FirstName,
-                lastName: req.body.LastName,
-                email: req.body.Email,
-                password: req.body.Password,
+            var newMatchCriteria = new MatchCriteria({
+                minAgeOfDog: 1,
+                maxAgeOfDog: 10,
+                dogSizeC: 'medium',
+                vetVerificationC: false,
+                statusC: 'happy',
+                locationC: 'indy'
+            });
+            newMatchCriteria.save(function(err, newMatchCriteria) {
+                if (err) {
+                    return callback(new HttpError (500, 'Failed to save matchCriteria'));
+                }
+            });
+
+            var newUser = new User({
+                matchCriteriaId: newMatchCriteria.id,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password,
                 gender: 'N/A',
                 bio: 'N/A',
                 homeAddress: 'N/A',
@@ -82,13 +98,18 @@ RegController.prototype.createUser = function(){
                     vetVerification: ['N/A']
                 }]
             });
+
             newUser.save(function(err, newUser) {
-                if (err) return callback(new HttpError (500, 'Failed to save user'));
+                if (err) {
+                    return callback(new HttpError (500, 'Failed to save user'));
+                }
                 res.status(200).json(newUser.id);
                 return callback(null);
             });
+
             //sending confirmation email
             sendEmail(req.body.Email);
+
         }
     };
 };
