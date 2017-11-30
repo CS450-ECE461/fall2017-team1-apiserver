@@ -57,6 +57,13 @@ userSchema.methods.getAgeOfOwner = function(){
     return age;
 };
 
+userSchema.methods.getAgeOfDog= function(){
+    var now = new Date();
+    var age = now.getFullYear() - this.dog.birthday.getFullYear();
+    return age;
+};
+
+
 //Registration Methods
 userSchema.methods.updateAct = function(varBool){
     this.activated = varBool;

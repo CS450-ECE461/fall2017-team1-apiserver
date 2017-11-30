@@ -21,8 +21,7 @@ const scopes = [
     []
 ];
 
-
-
+const dogSizes = ['large', 'small', 'medium', 'small', 'large'];
 
 
 // stubbing out the basic user profiles
@@ -50,9 +49,9 @@ module.exports = {
                   gender:'maleOrFemaleorShemale',
                   breed: 'breed' + i,
                   birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
-                  size:"large",
+                  size: dogSizes[i],
                   fixed:"neutered/spayed",
-                  vetVerification:["verification"]
+                  vetVerification: false
               });
           })
 
@@ -66,7 +65,7 @@ module.exports = {
             _id: dab.ref(`users.${i}`),
             minAgeOfDog: i,
             maxAgeOfDog: 2 + i,
-            dogSizeC: i + 'feet',
+            dogSizeC: dogSizes[i],
             vetVerificationC: false,
             status: i + ' single : (' ,
             locationC: i + i,
@@ -93,7 +92,7 @@ module.exports = {
         var client = {
             _id: env.environment.client_id,
             name: clientName,
-            secret: env.environment.client_id,
+            secret: env.environment.client_secret,
             email: clientName + '@no-reply.com',
             scope: scopes[i]
         };
