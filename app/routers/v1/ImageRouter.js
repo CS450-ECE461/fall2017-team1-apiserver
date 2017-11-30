@@ -5,4 +5,4 @@ var exif = require('exif').ExifImage
 var amqp = require('amqplib/callback_api');
 var image = require('../../models/Image');
 
-aws.config.loadFromPath('../../configs/aws.config');
+aws.config.loadFromPath('../../configs/aws.config.json');
