@@ -12,14 +12,14 @@
     "@onehilltech/blueprint-gatekeeper": "^0.68.2",
     "@onehilltech/blueprint-mongodb": "^0.35.7",
     "jsonwebtoken": "^8.1.0",
-    "sendmail": "^1.2.0",
-    "chai": "*",
-    "supertest": "*",
+    "amqplib": "^0.5.2",
     "aws-sdk": "^2.40.0",
+    "chai": "*",
+    "exif": "^0.6.0",
     "multer": "^1.3.0",
+    "sendmail": "^1.2.0",
     "shortid": "^2.2.8",
-    "exif": "^0.6.0"
-
+    "supertest": "*"
   },
   "devDependencies": {},
   "license": "Apache-2.0",

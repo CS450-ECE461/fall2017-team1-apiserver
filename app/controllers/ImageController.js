@@ -16,9 +16,7 @@ blueprint.controller (ImageController, blueprint.ResourceController);
 
 
 ImageController.prototype.uploadImage = function () {
-    return blueprint.app.server.upload.singleFile ('image', function (req, res) {
-        return res.render ('ImageUploadTest.pug', {file: req.file});
-    });
+    //nothing for now
 };
 
 module.exports = exports = ImageController;
