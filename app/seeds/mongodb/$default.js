@@ -22,6 +22,7 @@ const scopes = [
 ];
 
 const dogSizes = ['large', 'small', 'medium', 'small', 'large'];
+const status = ['adventurous', 'adventurous', 'adventurous', 'adventurous', 'adventurous'];
 
 
 // stubbing out the basic user profiles
@@ -39,7 +40,7 @@ module.exports = {
           bio: 'biographies' + account.username,
           homeAddress: 'homeAddressess' + account.username,
           geoLocation: "geoLoct" + account.username,
-          status: 'status' + account.username,
+          status: status[i],
           birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
           dog: dab.times(times, function(i, opts, callback){
               return callback(null, {
@@ -67,7 +68,7 @@ module.exports = {
             maxAgeOfDog: 2 + i,
             dogSizeC: dogSizes[i],
             vetVerificationC: false,
-            status: i + ' single : (' ,
+            status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
             potentialMatchesQueue: {"id":userIds[i]}
