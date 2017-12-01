@@ -17,6 +17,7 @@
     "chai": "*",
     "exif": "^0.6.0",
     "multer": "^1.3.0",
+    "multer-s3": "*",
     "sendmail": "^1.2.0",
     "shortid": "^2.2.8",
     "supertest": "*"
