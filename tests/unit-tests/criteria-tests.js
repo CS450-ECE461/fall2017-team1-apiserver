@@ -10,7 +10,6 @@ describe ( "MatchCriteriaTest", function() {
                 .send ({
                     "status":"adventurous"
                 }).expect (200, done);
-
         });
     });
 

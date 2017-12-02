@@ -71,27 +71,4 @@ MatchController.prototype.updateStatus = function(){
     }
 };
 
-
-//here functions that operate on the queue can be run
-MatchController.prototype.findMatch = function(){
-    return function(req, res){
-        User.findById(req.params.id, function(err, person){
-            if(err) return res.sendStatus(500);
-            if(person == null) { return res.sendStatus(404); }
-
-            MatchCriteria.findById(person.id, function(err, criteria){
-                if(err){ return res.sendStatus(500); }
-                if(criteria == null) {return res.sendStatus(404);}
-                criteria.lowPriorityInsertId("000000000000000000000001");
-                criteria.lowPriorityInsertId("000000000000000000000002");
-                criteria.lowPriorityInsertId("000000000000000000000003");
-                criteria.highPriorityInsertId("000000000000000000000003");
-                criteria.save();
-                return res.status(200).json(criteria);
-            });
-        });
-    }
-};
-
-
 module.exports = exports = MatchController;
