@@ -25,6 +25,8 @@ var userSchema = new mongodb.Schema({
 
     status: {type: String, trim: true},
 
+    avatar: {type: String, trim: true},
+
     // allow the user to own multiple dogs
     dog: [{
 
@@ -44,7 +46,9 @@ var userSchema = new mongodb.Schema({
 
         fixed: {type: String,  trim: true},
 
-        vetVerification: {type: Boolean, trim: true}
+        vetVerification: {type: Boolean, trim: true},
+
+        avatar: {type: String, trim: true}
     }]
 });
 

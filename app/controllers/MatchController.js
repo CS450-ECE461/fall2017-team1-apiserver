@@ -14,9 +14,6 @@ function MatchController () {
 
 blueprint.controller (MatchController, blueprint.ResourceController);
 
-
-
-
 MatchController.prototype.updateCriteria = function(){
 
     return function(req, res){

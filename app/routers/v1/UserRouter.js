@@ -18,10 +18,6 @@ module.exports = exports = {
         '/criteria': {
             get: {action: 'MatchController@getCriteria'},
             put: {action: 'MatchController@updateCriteria'}
-        },
-
-        '/findMatch': {
-            post: {action: 'MatchController@findMatch'}
         }
     }
 };
