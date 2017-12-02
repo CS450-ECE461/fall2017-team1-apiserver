@@ -30,7 +30,6 @@ module.exports = exports = {
         },
 
         '/uploadImage': {
-            get: {view: 'ImageUploadTest.pug'},
             post: {action: 'ImageController@uploadImage'}
         }
     }
