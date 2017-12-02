@@ -49,7 +49,7 @@ module.exports = {
                   bio: 'im heckin cool',
                   gender:'maleOrFemaleorShemale',
                   breed: 'breed' + i,
-                  birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
+                  birthday: Date.UTC((2012 + i), (1 + 1), i, 0, 0, 0),
                   size: dogSizes[i],
                   fixed:"neutered/spayed",
                   vetVerification: false
@@ -65,13 +65,13 @@ module.exports = {
         return callback(null, {
             _id: dab.ref(`users.${i}`),
             minAgeOfDog: i,
-            maxAgeOfDog: 2 + i,
+            maxAgeOfDog: 5 + i,
             dogSizeC: dogSizes[i],
             vetVerificationC: false,
             status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: {"id":userIds[i]}
+            potentialMatchesQueue: [{"_id":userIds[i]}]
         });
     }),
 

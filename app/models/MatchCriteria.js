@@ -30,7 +30,10 @@ var criteriaSchema = new mongodb.Schema({
 
 //queue.push("SOMETHING") is same as enqueue.
 criteriaSchema.methods.lowPriorityInsertId = function(aObjectID){
-    this.potentialMatchesQueue.push(aObjectID);
+    // if the id doesn't already exit, add it in the queue
+    if(this.potentialMatchesQueue.includes({"_id": aObjectID}) == false){
+        this.potentialMatchesQueue.push(aObjectID);
+    }
 };
 
 //queue.shift() is same as dequeue. It pops off the top element.

@@ -23,6 +23,8 @@ var userSchema = new mongodb.Schema({
 
     activated: {type: Boolean},
 
+    status: {type: String, trim: true},
+
     // allow the user to own multiple dogs
     dog: [{
 
