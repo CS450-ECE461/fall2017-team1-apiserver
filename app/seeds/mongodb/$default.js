@@ -14,6 +14,14 @@ const userIds = [
     "5a069b13bd9143509882c585"
 ];
 
+const matchIds = [
+    "5a069b13bd9143509882c583",
+    "5a069b13bd9143509882c584",
+    "5a069b13bd9143509882c582",
+    "5a069b13bd9143509882c585",
+    "5a069b13bd9143509882c581"
+];
+
 const scopes = [
     ["*"],
     [],
@@ -69,7 +77,7 @@ module.exports = {
             status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: [{"_id":userIds[i], "liked": false}]
+            potentialMatchesQueue: [{"_id":matchIds[i], "liked": true}]
         });
     }),
 

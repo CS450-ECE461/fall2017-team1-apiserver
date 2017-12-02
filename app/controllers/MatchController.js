@@ -3,6 +3,7 @@ var blueprint = require ('@onehilltech/blueprint'),
     ResourceController = mongodb.ResourceController,
     messaging = blueprint.messaging
     User = require('../models/User'),
+    Friend = require('../models/Friends'),
     MatchCriteria = require('../models/MatchCriteria'),
     util = require ('util');
 
@@ -70,11 +71,38 @@ MatchController.prototype.updateStatus = function(){
 
 MatchController.prototype.match = function(){
     return function(req, res){
-        console.log(req.body);
         if(req.body.liked == true){
 
+
+            MatchCriteria.findById(req.params.id, function(err, matchCriteria){
+                if(req.body.id != matchCriteria.topUserId()._id){
+                    console.log("error in the queue");
+                }
+                // remove user from queue
+                matchCriteria.popUserId();
+                matchCriteria.save();
+            });
+        
+
+            // on match, create a new friend join document
+            var newMatch = Friend({
+                user1: req.params.id,
+                user2: req.body.id
+            });
+
+            newMatch.save();
+
+            return res.status(200).json({"matched": true});
         } else {
-            console.log(req.params.id);
+            MatchCriteria.findById(req.params.id, function(err, matchCriteria){
+                if(req.body.id != matchCriteria.topUserId()._id){
+                    console.log("error in the queue");
+                }
+                // remove user from queue
+                matchCriteria.popUserId();
+                matchCriteria.save();
+            });
+            return res.status(200).json({"matched": false});
         }
     }
 }

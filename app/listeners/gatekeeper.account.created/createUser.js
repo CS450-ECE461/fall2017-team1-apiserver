@@ -10,6 +10,7 @@ module.exports = function(account){
 
     var newMatchCriteria = new MatchCriteria({
         minAgeOfDog: 1,
+        _id:account._id,
         maxAgeOfDog: 10,
         dogSizeC: 'medium',
         vetVerificationC: false,
