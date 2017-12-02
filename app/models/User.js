@@ -46,7 +46,7 @@ var userSchema = new mongodb.Schema({
 
         fixed: {type: String,  trim: true},
 
-        vetVerification: {type: [String], trim: true},
+        vetVerification: {type: Boolean, trim: true},
 
         avatar: {type: String, trim: true}
     }]
