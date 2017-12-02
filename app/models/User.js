@@ -9,8 +9,6 @@ const blueprint = require ('@onehilltech/blueprint'),
 // User Schema
 var userSchema = new mongodb.Schema({
 
-    matchCriteriaId: {type: ObjectId, required: true, ref: MatchCriteria, const: true },
-
     firstName: {type: String, required: true, trim: true},
 
     lastName: {type: String, required: true, trim: true},
@@ -21,12 +19,11 @@ var userSchema = new mongodb.Schema({
 
     homeAddress: {type: String,  trim: true},
 
-    // the current status of the dog(s)
-    status: {type: String,  trim: true},
-
     birthday: {type: Date, trim: true},
 
     activated: {type: Boolean},
+
+    status: {type: String, trim: true},
 
     // allow the user to own multiple dogs
     dog: [{
@@ -47,14 +44,10 @@ var userSchema = new mongodb.Schema({
 
         fixed: {type: String,  trim: true},
 
-        vetVerification: {type: [String], trim: true}
+        vetVerification: {type: Boolean, trim: true}
     }]
 });
 
-
-userSchema.methods.getMatchCriteriaID = function(){
-    return this.matchCriteriaId;
-};
 
 userSchema.methods.fullName = function(){
     return this.firstName + " " + this.lastName;
@@ -65,6 +58,13 @@ userSchema.methods.getAgeOfOwner = function(){
     var age = now.getFullYear() - this.birthday.getFullYear();
     return age;
 };
+
+userSchema.methods.getAgeOfDog= function(){
+    var now = new Date();
+    var age = now.getFullYear() - this.dog.birthday.getFullYear();
+    return age;
+};
+
 
 //Registration Methods
 userSchema.methods.updateAct = function(varBool){

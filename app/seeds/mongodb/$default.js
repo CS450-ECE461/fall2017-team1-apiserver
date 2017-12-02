@@ -21,8 +21,8 @@ const scopes = [
     []
 ];
 
-
-
+const dogSizes = ['large', 'small', 'medium', 'small', 'large'];
+const status = ['hungry', 'lazy', 'adventurous', 'playful', 'active'];
 
 // stubbing out the basic user profiles
 module.exports = {
@@ -35,14 +35,13 @@ module.exports = {
       var i = 0;
       return callback(null, {
           _id: account._id,
-          matchCriteriaId: userIds[i],
           firstName: 'firsty Namey ',
           lastName: account.username,
           gender: 'maleOrFemaleorShemale',
           bio: 'biographies' + account.username,
           homeAddress: 'homeAddressess' + account.username,
           geoLocation: "geoLoct" + account.username,
-          status: 'status' + account.username,
+          status: status[i],
           birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
           dog: dab.times(times, function(i, opts, callback){
               return callback(null, {
@@ -51,10 +50,10 @@ module.exports = {
                   bio: 'im heckin cool',
                   gender:'maleOrFemaleorShemale',
                   breed: 'breed' + i,
-                  birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
-                  size:"large",
+                  birthday: Date.UTC((2012 + i), (1 + 1), i, 0, 0, 0),
+                  size: dogSizes[i],
                   fixed:"neutered/spayed",
-                  vetVerification:["verification"]
+                  vetVerification: false
               });
           })
 
@@ -65,14 +64,15 @@ module.exports = {
 
     MatchCriterias: dab.times (5, function (i, opts, callback) {
         return callback(null, {
+            _id: dab.ref(`users.${i}`),
             minAgeOfDog: i,
-            maxAgeOfDog: 2 + i,
-            dogSizeC: i + 'feet',
+            maxAgeOfDog: 5 + i,
+            dogSizeC: dogSizes[i],
             vetVerificationC: false,
-            statusC: i + ' single : (' ,
+            status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: userIds[i]
+            potentialMatchesQueue: [{"_id":userIds[i], "liked": false}]
         });
     }),
 
@@ -101,7 +101,7 @@ module.exports = {
         var client = {
             _id: env.environment.client_id,
             name: clientName,
-            secret: env.environment.client_id,
+            secret: env.environment.client_secret,
             email: clientName + '@no-reply.com',
             scope: scopes[i]
         };
