@@ -19,6 +19,7 @@ module.exports = function(matchCriteria){
      people.forEach(function(element){
         matchCriteria.lowPriorityInsertId(element._id);
      });
+     console.log(matchCriteria);
      matchCriteria.save();
  });
 

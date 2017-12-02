@@ -32,7 +32,7 @@ var criteriaSchema = new mongodb.Schema({
 criteriaSchema.methods.lowPriorityInsertId = function(aObjectID){
     // if the id doesn't already exit, add it in the queue
     if(this.potentialMatchesQueue.includes({"_id": aObjectID}) == false){
-        this.potentialMatchesQueue.push(aObjectID);
+        this.potentialMatchesQueue.push({"_id":aObjectID, "liked": false});
     }
 };
 
@@ -63,7 +63,7 @@ criteriaSchema.methods.getNumOfMatches = function(){
 };
 
 criteriaSchema.methods.highPriorityInsertId = function (aObjectID) {
-    this.potentialMatchesQueue.splice(this.lastInsertedId, 0, aObjectID);
+    this.potentialMatchesQueue.splice(this.lastInsertedId, 0, {"_id": aObjectID, "liked": true});
     this.lastInsertedId++;
 };
 

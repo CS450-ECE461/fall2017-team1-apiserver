@@ -22,7 +22,7 @@ const scopes = [
 ];
 
 const dogSizes = ['large', 'small', 'medium', 'small', 'large'];
-const status = ['adventurous', 'adventurous', 'adventurous', 'adventurous', 'adventurous'];
+const status = ['hungry', 'lazy', 'adventurous', 'playful', 'active'];
 
 
 // stubbing out the basic user profiles
@@ -71,7 +71,7 @@ module.exports = {
             status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: [{"_id":userIds[i]}]
+            potentialMatchesQueue: [{"_id":userIds[i], "liked": false}]
         });
     }),
 
