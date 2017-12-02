@@ -6,7 +6,6 @@ const dab = require ('@onehilltech/dab'),
     env = require('../../configs/environment.config'),
     ObjectId = mongodb.Types.ObjectId;
 
-
 const userIds = [
     "5a069b13bd9143509882c581",
     "5a069b13bd9143509882c583",
@@ -26,9 +25,6 @@ const status = ['hungry', 'lazy', 'adventurous', 'playful', 'active'];
 
 // stubbing out the basic user profiles
 module.exports = {
-
-  
-
     users: dab.map (dab.get ('accounts'), function (account, opts, callback) {
 
       var times = Math.floor(Math.random() * 4) + 1;
@@ -36,31 +32,32 @@ module.exports = {
       return callback(null, {
           _id: account._id,
           firstName: 'firsty Namey ',
+          matchCriteriaId: userIds[i],
+          firstName: 'Test',
           lastName: account.username,
-          gender: 'maleOrFemaleorShemale',
+          gender: 'male',
           bio: 'biographies' + account.username,
           homeAddress: 'homeAddressess' + account.username,
           geoLocation: "geoLoct" + account.username,
           status: status[i],
           birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
+          avatar: 'https://cs.iupui.edu/~jbcampbe/default_user_avatar.svg',
           dog: dab.times(times, function(i, opts, callback){
               return callback(null, {
-                  firstName: 'first dogo name' + i,
-                  lastName: 'lasty dogo name' + i,
-                  bio: 'im heckin cool',
-                  gender:'maleOrFemaleorShemale',
+                  firstName: 'Dog',
+                  lastName: i,
+                  bio: 'dog profile',
+                  gender:'male',
                   breed: 'breed' + i,
-                  birthday: Date.UTC((2012 + i), (1 + 1), i, 0, 0, 0),
-                  size: dogSizes[i],
-                  fixed:"neutered/spayed",
-                  vetVerification: false
+                  birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
+                  size: "large",
+                  fixed: "neutered",
+                  vetVerification: true,
+                  avatar: 'https://cs.iupui.edu/~jbcampbe/default_dog_avatar.svg',
               });
           })
-
       });
-
   }),
-
 
     MatchCriterias: dab.times (5, function (i, opts, callback) {
         return callback(null, {
@@ -75,7 +72,6 @@ module.exports = {
             potentialMatchesQueue: [{"_id":userIds[i], "liked": false}]
         });
     }),
-
 
     // let user 2 be friends with user 0 and 1
     friend: dab.times(2, function(i, opts, callback){
@@ -94,7 +90,7 @@ module.exports = {
         {to: dab.ref('users.0'), from: dab.ref('users.1'), message:'Lovely weather isnt it?', timeStamp:Date.UTC(2017, 11, 27, 12, 4)},
         {to: dab.ref('users.1'), from: dab.ref('users.0'), message:'I suppose', timeStamp:Date.UTC(2017, 11, 28, 6, 13)}
     ],
-    
+
     // single web access client
     clients: dab.times (1, function (i, opts, callback) {
         var clientName = 'supdog-web';
