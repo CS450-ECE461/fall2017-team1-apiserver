@@ -68,4 +68,15 @@ MatchController.prototype.updateStatus = function(){
     }
 };
 
+MatchController.prototype.match = function(){
+    return function(req, res){
+        console.log(req.body);
+        if(req.body.liked == true){
+
+        } else {
+            console.log(req.params.id);
+        }
+    }
+}
+
 module.exports = exports = MatchController;
