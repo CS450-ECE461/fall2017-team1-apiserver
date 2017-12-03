@@ -4,11 +4,9 @@ var blueprint = require ('@onehilltech/blueprint'),
     util = require ('util'),
     Image = require('../models/Image');
 var shortid = require('shortid');
-var http = require('http');
 var aws = require('aws-sdk');
-var multer  = require('multer');
-var express = require('express');
-var app = express();
+
+
 
 
 
@@ -25,6 +23,10 @@ blueprint.controller (ImageController, blueprint.ResourceController);
 ImageController.prototype.uploadImage = function () {
     return function(req, res) {
 
+        if(!req.files){
+            console.log("No file was found");
+        }
+
         console.log('---------------------------------- 1');
         aws.config.loadFromPath('app/configs/aws.config.json');
         aws.config.update({
@@ -33,12 +35,10 @@ ImageController.prototype.uploadImage = function () {
         var s3 = new aws.S3();
 
         console.log('---------------------------------- 2');
-        var upload = multer();
 
-        console.log('---------------------------------- 2.5');
+
         var fileName = shortid.generate() + "-" + req.file;
-// file : { fieldname, originalname, name,
-// encoding, mimetype, path, extension, size, truncated, buffer }
+
         console.log('---------------------------------- 3');
         var params = {
             Bucket : "supdog",
