@@ -9,26 +9,16 @@ module.exports = exports = {
 
         '/dogs/:dogId': {
             get: {action: 'UserController@getDog'},
-            put: {action: 'UserController@updateDog'}
+            put: {action: 'UserController@updateDog'},
         },
 
         '/status': {
-            post: {action: 'UserController@updateStatus' }
+            put: {action: 'MatchController@updateStatus'}
         },
-
         '/criteria': {
             get: {action: 'MatchController@getCriteria'},
             put: {action: 'MatchController@updateCriteria'}
         },
-
-        '/criteriaStatus': {
-            put: {action: 'MatchController@updateStatus'}
-        },
-
-        '/findMatch': {
-            post: {action: 'MatchController@findMatch'}
-        },
-
         '/uploadImage': {
             post: {action: 'ImageController@uploadImage'}
         }

@@ -16,13 +16,13 @@ var criteriaSchema = new mongodb.Schema({
 
     vetVerificationC: {type: Boolean, trim: true},
 
-    statusC: {type: String, trim: true},
+    status: {type: String, trim: true},
 
     locationC: {type: String, trim: true},//this will change in the future once location is set up.
 
     lastInsertedId: {type: Number, default: 0},
 
-    potentialMatchesQueue:{type: [ObjectId], ref: User}
+    potentialMatchesQueue:{type: [{"id":ObjectId, "liked":Boolean}], default: {"liked": false}, ref: User}
     });
 
 
@@ -30,7 +30,10 @@ var criteriaSchema = new mongodb.Schema({
 
 //queue.push("SOMETHING") is same as enqueue.
 criteriaSchema.methods.lowPriorityInsertId = function(aObjectID){
-    this.potentialMatchesQueue.push(aObjectID);
+    // if the id doesn't already exit, add it in the queue
+    if(this.potentialMatchesQueue.includes({"_id": aObjectID}) == false){
+        this.potentialMatchesQueue.push({"_id":aObjectID, "liked": false});
+    }
 };
 
 //queue.shift() is same as dequeue. It pops off the top element.
@@ -60,7 +63,7 @@ criteriaSchema.methods.getNumOfMatches = function(){
 };
 
 criteriaSchema.methods.highPriorityInsertId = function (aObjectID) {
-    this.potentialMatchesQueue.splice(this.lastInsertedId, 0, aObjectID);
+    this.potentialMatchesQueue.splice(this.lastInsertedId, 0, {"_id": aObjectID, "liked": true});
     this.lastInsertedId++;
 };
 

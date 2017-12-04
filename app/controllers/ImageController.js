@@ -1,6 +1,7 @@
 var blueprint = require ('@onehilltech/blueprint'),
     mongodb = ('@onehilltech/blueprint-mongodb'),
     ResourceController = mongodb.ResourceController,
+    User = require('../models/User'),
     util = require ('util'),
     Image = require('../models/Image');
 var shortid = require('shortid');
@@ -27,19 +28,15 @@ ImageController.prototype.uploadImage = function () {
             console.log("No file was found");
         }
 
-        console.log('---------------------------------- 1');
+
         aws.config.loadFromPath('app/configs/aws.config.json');
         aws.config.update({
             signatureVersion: 'v4'
         });
         var s3 = new aws.S3();
 
-        console.log('---------------------------------- 2');
-
-
         var fileName = shortid.generate() + "-" + req.file;
-
-        console.log('---------------------------------- 3');
+        var fileUrl = 'https://s3.amazonaws.com/supdog/' + fileName;
         var params = {
             Bucket : "supdog",
             ACL : "public-read",
@@ -47,15 +44,18 @@ ImageController.prototype.uploadImage = function () {
             Body : req.file
         };
 
-        console.log('---------------------------------- 4');
         s3.putObject(params, function(err, data) {
             if (err) {
-                res.status(500).send(err)
+                return res.status(500).send(err)
             }
         });
+git
+        User.findByIdAndUpdate({_id: req.params.id}, {avatar: fileUrl}, {new: true}, function(err, user){
+            if(err){ return res.sendStatus(500); }
+            if(user == null) {return res.sendStatus(404);}
+            return res.json({message: fileUrl});
+        });
 
-        console.log('---------------------------------- 5');
-        return res.status(200);
     }
 }
 
