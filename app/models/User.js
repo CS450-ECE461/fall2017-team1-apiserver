@@ -79,6 +79,14 @@ userSchema.methods.getActivation = function(){
     return this.activated;
 };
 
+userSchema.methods.getUrl = function () {
+  return this.avatar;
+};
+
+userSchema.methods.getDogUrl = function () {
+  return this.avatar;
+};
+
 
 const COLLECTION_NAME = 'users';
 const MODEL_NAME = 'user';
