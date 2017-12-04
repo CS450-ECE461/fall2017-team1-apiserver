@@ -35,7 +35,7 @@ function sendToS3Bucket(reqFileName, reqFileBody){
 
   s3.putObject(params, function(err, data) {
     if (err) {
-      return res.status(500).send(err)
+      return err
     }
   });
   return fileUrl;
@@ -79,13 +79,27 @@ ImageController.prototype.uploadImage = function () {
         if(!req.files){
             console.log("No file was found");
         }
-        var fileUrl = sendToS3Bucket(req.file, req.file)
+
+      console.log(req.files);
+      console.log("---------------------------- 1");
+      console.log(req.files);
+      console.log("---------------------------- 2");
+      console.log(req);
+      console.log("------------------------------------------------------------------------------ 3");
+      console.log(req.file);
+      console.log("------------------------------------------------------------------------------ 4");
+      console.log(req.body);
+      console.log("------------------------------------------------------------------------------ 5");
+      console.log(req.body.files);
+      console.log("------------------------------------------------------------------------------ 6");
+
+        var fileUrl = sendToS3Bucket(req.file, req.file);
 
 
         User.findByIdAndUpdate({_id: req.params.id}, {avatar: fileUrl}, {new: true}, function(err, person){
             if(err){ return res.sendStatus(500); }
             if(person == null) {return res.sendStatus(404);}
-            return res.json({message: fileUrl});//error present in this line
+            return res.status(200).json({message: fileUrl});
         });
 
     }
@@ -106,8 +120,7 @@ ImageController.prototype.uploadDogImage = function () {
       {avatar: fileUrl},  {new: true}, function(err, person){
         if(err)return res.sendStatus(500);
         if(person == null) { return res.sendStatus(404); }
-        console.log(person);
-        return res.status(200).json({message: fileUrl});
+        return res.status(200).json({ImageLink: fileUrl});
       });
   }
 };

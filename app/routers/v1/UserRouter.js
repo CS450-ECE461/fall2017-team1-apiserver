@@ -18,10 +18,6 @@ module.exports = exports = {
         '/criteria': {
             get: {action: 'MatchController@getCriteria'},
             put: {action: 'MatchController@updateCriteria'}
-        },
-        '/uploadImage': {
-            get: {action: 'ImageController@getImageUrl'},
-            post: {action: 'ImageController@uploadImage'}
         }
     }
 };
