@@ -32,7 +32,6 @@ describe ( "FriendTest", function() {
                     expect(res.body).to.have.property('user2', '5a069b13bd9143509882c585');
                     done();
                 });
-
         });
     });
 
