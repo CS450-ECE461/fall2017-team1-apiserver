@@ -22,6 +22,56 @@ const matchIds = [
     "5a069b13bd9143509882c581"
 ];
 
+const avatarUrls = [
+  "https://s3.amazonaws.com/supdog/ProfilePic1.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic2.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic3.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic4.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic5.jpeg"
+];
+
+const avatarDogUrls = [
+  "https://s3.amazonaws.com/supdog/DogPic1.jpg",
+  "https://s3.amazonaws.com/supdog/DogPic2.jpg",
+  "https://s3.amazonaws.com/supdog/DogPic3.jpg",
+  "https://s3.amazonaws.com/supdog/DogPic4.jpg",
+  "https://s3.amazonaws.com/supdog/DogPic5.jpg"
+];
+
+const firstNames = [
+  "Alex,",
+  "Avery",
+  "Casey",
+  "Riley",
+  "Tony"
+];
+
+const lastNames = [
+  "Smith,",
+  "Garcia",
+  "YoungMoney",
+  "Moore",
+  "Jones"
+];
+
+const locations = [
+  "Indianapolis",
+  "Avon",
+  "Indianapolis",
+  "GreenWood",
+  "BroaRipple"
+]
+
+const bios = [
+  "I love dogs, dogs are lyfe.",
+  "Hey there, just moved and my dog doesn't have any friends. Hmu",
+  "Looking to make new friends :)",
+  "Hii, my dog loves playing at the local park, anyone else go there?",
+  "My dog needs friends!"
+];
+
+
+
 const scopes = [
     ["*"],
     [],
@@ -39,17 +89,16 @@ module.exports = {
       var i = 0;
       return callback(null, {
           _id: account._id,
-          firstName: 'firsty Namey ',
           matchCriteriaId: userIds[i],
-          firstName: 'Test',
-          lastName: account.username,
+          firstName: firstNames[i],
+          lastName: lastNames[i],
           gender: 'male',
-          bio: 'biographies' + account.username,
+          bio: bios[i],
           homeAddress: 'homeAddressess' + account.username,
-          geoLocation: "geoLoct" + account.username,
+          geoLocation: locations[i],
           status: status[i],
           birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
-          avatar: 'https://cs.iupui.edu/~jbcampbe/default_user_avatar.svg',
+          avatar: avatarUrls[i],
           dog: dab.times(times, function(i, opts, callback){
               return callback(null, {
                   firstName: 'Dog',
@@ -61,7 +110,7 @@ module.exports = {
                   size: "large",
                   fixed: "neutered",
                   vetVerification: true,
-                  avatar: 'https://cs.iupui.edu/~jbcampbe/default_dog_avatar.svg',
+                  avatar: avatarDogUrls[i],
               });
           })
       });
