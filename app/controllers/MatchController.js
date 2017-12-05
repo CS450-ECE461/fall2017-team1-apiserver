@@ -20,15 +20,14 @@ MatchController.prototype.updateCriteria = function(){
     return function(req, res){
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
-            if(person == null) { return res.sendStatus(404); }
+            if(person == null) { return res.sendStatus(404);}
 
             // update criteria and return updated model
             MatchCriteria.findByIdAndUpdate({_id: person.id}, {minAgeOfDog: req.body.minAgeOfDog, maxAgeOfDog: req.body.maxAgeOfDog,
                 dogSizeC: req.body.dogSizeC, vetVerificationC: req.body.vetVerificationC, status: req.body.status, locationC: req.body.locationC}, {new: true}, function(err, criteria){
-                    if(err){ return res.sendStatus(500); }
+                    if(err){return res.sendStatus(500);}
                     if(criteria == null) {return res.sendStatus(404);}
-                    criteria.save();
-                    return res.status(200);
+                    return res.sendStatus(200);
                 });
         });
     }
@@ -83,12 +82,12 @@ MatchController.prototype.match = function(){
                     matchCriteria.popUserId();
                     matchCriteria.save();
                 });
-            
+
                 var newMatch = Friend({
                     user1: req.params.id,
                     user2: req.body.id
                 });
-    
+
                 newMatch.save();
                 return res.status(200).json({"matched": true});
 
@@ -99,7 +98,7 @@ MatchController.prototype.match = function(){
                 });
                 return res.status(200).json({"matched": false});
             }
-            
+
         } else {
             MatchCriteria.findById(req.params.id, function(err, matchCriteria){
                 if(req.body.id != matchCriteria.topUserId()._id){
