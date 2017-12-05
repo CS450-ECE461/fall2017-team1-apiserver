@@ -1,8 +1,7 @@
 module.exports = exports = {
   '/user/:id':{
     '/avatar': {
-      get: {view: 'ImageUploadTest.pug'},
-      //get: {action: 'ImageController@getImageUrl'},
+      get: {action: 'ImageController@getImageUrl'},
       post: {action: 'ImageController@uploadImage'}
     },
   '/dogs/:dogId/dogAvatar': {
