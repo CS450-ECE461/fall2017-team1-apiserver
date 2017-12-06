@@ -29,6 +29,18 @@ const userIds = [
 ];
 
 const matchIds = [
+    "5a069b13bd9143509882c581",
+    "5a069b13bd9143509882c583",
+    "5a069b13bd9143509882c584",
+    "5a069b13bd9143509882c582",
+    "5a069b13bd9143509882c585",
+
+    "5a069b13bd9143509882c586",
+    "5a069b13bd9143509882c587",
+    "5a069b13bd9143509882c588",
+    "5a069b13bd9143509882c589",
+    "5a069b13bd9143509882c590",
+
     "5a069b13bd9143509882c591",
     "5a069b13bd9143509882c592",
     "5a069b13bd9143509882c593",
@@ -249,7 +261,7 @@ module.exports = {
     }),
 
     MatchCriterias: dab.times (15, function (i, opts, callback) {
-        var randIndex = Math.floor(Math.random() * 5);
+        var randIndex = Math.floor(Math.random() * 10);
         return callback(null, {
             _id: dab.ref(`users.${i}`),
             minAgeOfDog: i,
@@ -259,7 +271,15 @@ module.exports = {
             status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: [{"_id":matchIds[randIndex], "liked": true}]
+            potentialMatchesQueue: [
+                {"_id":matchIds[randIndex], "liked": true},
+                {"_id":matchIds[randIndex + 1], "liked": true},
+                {"_id":matchIds[randIndex + 2], "liked": true},
+                {"_id":matchIds[randIndex + 3], "liked": true},
+                {"_id":matchIds[randIndex + 4], "liked": true},
+                {"_id":matchIds[randIndex + 5], "liked": true}
+            ]
+
         });
     }),
 
