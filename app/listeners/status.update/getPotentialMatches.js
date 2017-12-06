@@ -17,9 +17,15 @@ module.exports = function(matchCriteria){
 
     // add the potential matches into the potential match queue
      people.forEach(function(element){
-        matchCriteria.lowPriorityInsertId(element._id);
+        // console.log(element);
+        if(matchCriteria.potentialMatchesQueue.includes({'_id':element._id, 'liked': 'false'}) == false){
+            if(matchCriteria.potentialMatchesQueue.includes({'_id':element._id, 'liked': 'true'}) == false){
+                matchCriteria.lowPriorityInsertId(element._id);
+            }
+        }
+        
      });
-     console.log(matchCriteria);
+     //console.log(matchCriteria);
      matchCriteria.save();
  });
 
