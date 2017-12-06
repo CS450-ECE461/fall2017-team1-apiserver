@@ -209,12 +209,14 @@ const dogBio = [
 
 
 
-var index = 0;
+var index = -1;
 // stubbing out the basic user profiles
 module.exports = {
 
 
     users: dab.map (dab.get ('accounts'), function (account, opts, callback) {
+        index++;
+        if(index > 14){index = 0;}
         const MAX = 5;
         const MIN = 0;
         var i = Math.floor(Math.random() * (MAX - MIN) + MIN);
@@ -244,8 +246,10 @@ module.exports = {
                     fixed: "neutered",
                     vetVerification: true,
                     avatar: avatarDogUrls[index]
-                }]     
-        }, index++);
+                }]
+                
+        });
+      
     }),
 
     MatchCriterias: dab.times (15, function (i, opts, callback) {
