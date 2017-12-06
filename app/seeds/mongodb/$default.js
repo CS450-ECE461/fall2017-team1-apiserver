@@ -6,10 +6,7 @@ const dab = require ('@onehilltech/dab'),
     env = require('../../configs/environment.config'),
     ObjectId = mongodb.Types.ObjectId;
 
-//gives random number between a range
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 
 const userIds = [
     "5a069b13bd9143509882c581",
@@ -56,26 +53,26 @@ const avatarUrls = [
   "https://s3.amazonaws.com/supdog/olivia.png",
   "https://s3.amazonaws.com/supdog/Kim.png",
 
-  "https://s3.amazonaws.com/supdog/ProfilePic1.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic2.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic3.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic4.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic5.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic1.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic2.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic3.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic4.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic5.jpg",
 
-  "https://s3.amazonaws.com/supdog/ProfilePic6.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic7.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic8.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic9.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic10.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic6.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic7.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic8.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic9.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic10.jpg",
 
-  "https://s3.amazonaws.com/supdog/ProfilePic11.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic12.jpeg",
+  "https://s3.amazonaws.com/supdog/ProfilePic11.jpg",
+  "https://s3.amazonaws.com/supdog/ProfilePic12.jpg"
 ];
 
 const avatarDogUrls = [
-    "https://s3.amazonaws.com/supdog/Oliver.jpg",
-    "https://s3.amazonaws.com/supdog/Max.jpg",
-    "https://s3.amazonaws.com/supdog/Bella.jpg",
+  "https://s3.amazonaws.com/supdog/Oliver.jpg",
+  "https://s3.amazonaws.com/supdog/Max.jpg",
+  "https://s3.amazonaws.com/supdog/Bella.jpg",
 
   "https://s3.amazonaws.com/supdog/DogPic1.jpg",
   "https://s3.amazonaws.com/supdog/DogPic2.jpg",
@@ -90,7 +87,7 @@ const avatarDogUrls = [
   "https://s3.amazonaws.com/supdog/DogPic10.jpg",
 
   "https://s3.amazonaws.com/supdog/DogPic11.jpg",
-  "https://s3.amazonaws.com/supdog/DogPic12.jpg",
+  "https://s3.amazonaws.com/supdog/DogPic12.jpg"
 
 ];
 
@@ -213,8 +210,8 @@ const status = ['hungry', 'lazy', 'adventurous', 'playful', 'active'];
 const gender = ['male', 'female', 'male', 'female', 'female' ];
 const breed = ['golden retriever', 'Black Lab', 'Pug', 'German shepherd', 'Corgi'];
 const dogBio = [
-    'Be the best boy you can be, then maybe youll get petted', 
-    'SQUIRREL!', 'come sniff my butt ;)', 
+    'Be the best boy you can be, then maybe youll get petted',
+    'SQUIRREL!', 'come sniff my butt ;)',
     'my friend made this lol, wont message first. Follow me on insta @ballboi',
     'Lover of walks, hate vacuums and the mail man. If you like mud, we\'ll get along just fine' ];
 
@@ -260,9 +257,9 @@ module.exports = {
                     vetVerification: true,
                     avatar: avatarDogUrls[index]
                 }]
-                
+
         });
-      
+
     }),
 
     MatchCriterias: dab.times (15, function (i, opts, callback) {
