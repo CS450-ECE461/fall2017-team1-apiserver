@@ -29,11 +29,11 @@ const userIds = [
 ];
 
 const matchIds = [
-    "5a069b13bd9143509882c583",
-    "5a069b13bd9143509882c584",
-    "5a069b13bd9143509882c582",
-    "5a069b13bd9143509882c585",
-    "5a069b13bd9143509882c581"
+    "5a069b13bd9143509882c591",
+    "5a069b13bd9143509882c592",
+    "5a069b13bd9143509882c593",
+    "5a069b13bd9143509882c594",
+    "5a069b13bd9143509882c595"
 ];
 
 const avatarUrls = [
@@ -214,6 +214,7 @@ module.exports = {
     users: dab.map (dab.get ('accounts'), function (account, opts, callback) {
         index++;
         if(index > 14){index = 0;}
+
         const MAX = 5;
         const MIN = 0;
         var i = Math.floor(Math.random() * (MAX - MIN) + MIN);
@@ -227,7 +228,7 @@ module.exports = {
             bio: bios[index],
             homeAddress: homeAddresses[index],
             geoLocation: locations[index],
-            status: status[index],
+            status: 'playful',
             birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
             avatar: avatarUrls[index],
             dog: [{
@@ -250,6 +251,7 @@ module.exports = {
     }),
 
     MatchCriterias: dab.times (15, function (i, opts, callback) {
+        var randIndex = Math.floor(Math.random() * 5);
         return callback(null, {
             _id: dab.ref(`users.${i}`),
             minAgeOfDog: i,
@@ -259,7 +261,7 @@ module.exports = {
             status: status[i] ,
             locationC: i + i,
             lastInsertedId: 0,
-            potentialMatchesQueue: [{"_id":matchIds[i], "liked": true}]
+            potentialMatchesQueue: [{"_id":matchIds[randIndex], "liked": true}]
         });
     }),
 
