@@ -184,6 +184,7 @@ const homeAddresses = [
   "P.O. Box 360 4407 Et Rd, Santa Monica FL 30309"
 ];
 
+
 const scopes = [
     ["*"],
     [],
@@ -194,7 +195,7 @@ const dogFirstNames = [
     'Oliver', 'Max', 'Bella', 'Bronx', 'Doone', 'Java', 'Moroccan',
     'Saint', 'Zolten', 'Nate', 'Josiah', 'Tim', 'Turk', 'Trevor', 'Pardeep'];
 
-
+const dogLevels = ['high', 'medium', 'average', 'low', 'average'];
 const dogSizes = ['large', 'small', 'medium', 'small', 'large'];
 const status = ['hungry', 'lazy', 'adventurous', 'playful', 'active'];
 const gender = ['male', 'female', 'male', 'female', 'female' ];
@@ -238,13 +239,13 @@ module.exports = {
                     breed: breed[i],
                     birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
                     size: dogSizes[i],
+                    playfulness: dogLevels[i],
+                    energy: dogLevels[i],
                     fixed: "neutered",
                     vetVerification: true,
                     avatar: avatarDogUrls[index]
-                }]
-                
+                }]     
         }, index++);
-      
     }),
 
     MatchCriterias: dab.times (15, function (i, opts, callback) {
