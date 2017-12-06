@@ -40,6 +40,8 @@ const avatarUrls = [
   "https://s3.amazonaws.com/supdog/evan.png",
   "https://s3.amazonaws.com/supdog/olivia.png",
   "https://s3.amazonaws.com/supdog/Kim.png",
+  "https://s3.amazonaws.com/supdog/Holyn.jpg",
+  "https://s3.amazonaws.com/supdog/AliKattman.jpg",
 
   "https://s3.amazonaws.com/supdog/ProfilePic1.jpg",
   "https://s3.amazonaws.com/supdog/ProfilePic2.jpg",
@@ -51,16 +53,15 @@ const avatarUrls = [
   "https://s3.amazonaws.com/supdog/ProfilePic7.jpg",
   "https://s3.amazonaws.com/supdog/ProfilePic8.jpg",
   "https://s3.amazonaws.com/supdog/ProfilePic9.jpg",
-  "https://s3.amazonaws.com/supdog/ProfilePic10.jpg",
-
-  "https://s3.amazonaws.com/supdog/ProfilePic11.jpg",
-  "https://s3.amazonaws.com/supdog/ProfilePic12.jpg"
+  "https://s3.amazonaws.com/supdog/ProfilePic10.jpg"
 ];
 
 const avatarDogUrls = [
   "https://s3.amazonaws.com/supdog/Oliver.jpg",
   "https://s3.amazonaws.com/supdog/Max.jpg",
   "https://s3.amazonaws.com/supdog/Bella.jpg",
+  "https://s3.amazonaws.com/supdog/Baxter.jpg",
+  "https://s3.amazonaws.com/supdog/Tiki.jpg",
 
   "https://s3.amazonaws.com/supdog/DogPic1.jpg",
   "https://s3.amazonaws.com/supdog/DogPic2.jpg",
@@ -72,10 +73,7 @@ const avatarDogUrls = [
   "https://s3.amazonaws.com/supdog/DogPic7.jpg",
   "https://s3.amazonaws.com/supdog/DogPic8.jpg",
   "https://s3.amazonaws.com/supdog/DogPic9.jpg",
-  "https://s3.amazonaws.com/supdog/DogPic10.jpg",
-
-  "https://s3.amazonaws.com/supdog/DogPic11.jpg",
-  "https://s3.amazonaws.com/supdog/DogPic12.jpg"
+  "https://s3.amazonaws.com/supdog/DogPic10.jpg"
 
 ];
 
@@ -84,8 +82,8 @@ const firstNames = [
   "Evan",
   "Olivia",
   "Casey",
-  "Riley",
-  "Tony",
+  "Holyn",
+  "Ali",
 
   "Micah",
   "Taylor",
@@ -104,7 +102,7 @@ const lastNames = [
   "Smith",
   "Garcia",
   "YoungMoney",
-  "Moore",
+  "Kattman",
   "Jones",
 
   "Johnson",
@@ -189,7 +187,7 @@ const scopes = [
 ];
 
 const dogFirstNames = [
-    'Oliver', 'Max', 'Bella', 'Bronx', 'Doone', 'Java', 'Moroccan',
+    'Oliver', 'Max', 'Bella', 'Baxter', 'Tiki', 'Java', 'Moroccan',
     'Saint', 'Zolten', 'Nate', 'Josiah', 'Tim', 'Turk', 'Trevor', 'Pardeep'];
 
 const dogLevels = ['high', 'medium', 'average', 'low', 'average'];
