@@ -40,6 +40,10 @@ const matchIds = [
 ];
 
 const avatarUrls = [
+  "https://s3.amazonaws.com/supdog/evan.png",
+  "https://s3.amazonaws.com/supdog/olivia.png",
+  "https://s3.amazonaws.com/supdog/Kim.png",
+
   "https://s3.amazonaws.com/supdog/ProfilePic1.jpeg",
   "https://s3.amazonaws.com/supdog/ProfilePic2.jpeg",
   "https://s3.amazonaws.com/supdog/ProfilePic3.jpeg",
@@ -54,12 +58,13 @@ const avatarUrls = [
 
   "https://s3.amazonaws.com/supdog/ProfilePic11.jpeg",
   "https://s3.amazonaws.com/supdog/ProfilePic12.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic13.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic14.jpeg",
-  "https://s3.amazonaws.com/supdog/ProfilePic15.jpeg"
 ];
 
 const avatarDogUrls = [
+    "https://s3.amazonaws.com/supdog/Oliver.jpg",
+    "https://s3.amazonaws.com/supdog/Max.jpg",
+    "https://s3.amazonaws.com/supdog/Bella.jpg",
+
   "https://s3.amazonaws.com/supdog/DogPic1.jpg",
   "https://s3.amazonaws.com/supdog/DogPic2.jpg",
   "https://s3.amazonaws.com/supdog/DogPic3.jpg",
@@ -74,15 +79,13 @@ const avatarDogUrls = [
 
   "https://s3.amazonaws.com/supdog/DogPic11.jpg",
   "https://s3.amazonaws.com/supdog/DogPic12.jpg",
-  "https://s3.amazonaws.com/supdog/DogPic13.jpg",
-  "https://s3.amazonaws.com/supdog/DogPic14.jpg",
-  "https://s3.amazonaws.com/supdog/DogPic15.jpg"
+
 ];
 
 //Unisex names
 const firstNames = [
-  "Alex,",
-  "Avery",
+  "Evan",
+  "Olivia",
   "Casey",
   "Riley",
   "Tony",
@@ -141,9 +144,9 @@ const locations = [
 ];
 
 const bios = [
-  "I love dogs, dogs are lyfe.",
-  "Hey there, just moved and my dog doesn't have any friends. Hmu",
-  "Looking to make new friends :)",
+  "Me and Oliver love to go on long adventurous hikes and try new trails. we're looking to find someone as adventurous as us",
+  "Hey there, just moved and my dog Mac doesn't have any friends. We need walking buddies",
+  "Just got a new pup,Bella and we\'re looking to make new friends :)",
   "Hii, my dog loves playing at the local park, anyone else go there?",
   "My dog needs friends!",
 
@@ -187,46 +190,62 @@ const scopes = [
     []
 ];
 
+const dogFirstNames = [
+    'Oliver', 'Max', 'Bella', 'Bronx', 'Doone', 'Java', 'Moroccan',
+    'Saint', 'Zolten', 'Nate', 'Josiah', 'Tim', 'Turk', 'Trevor', 'Pardeep'];
+
+
 const dogSizes = ['large', 'small', 'medium', 'small', 'large'];
 const status = ['hungry', 'lazy', 'adventurous', 'playful', 'active'];
+const gender = ['male', 'female', 'male', 'female', 'female' ];
+const breed = ['golden retriever', 'Black Lab', 'Pug', 'German shepherd', 'Corgi'];
+const dogBio = [
+    'Be the best boy you can be, then maybe youll get petted', 
+    'SQUIRREL!', 'come sniff my butt ;)', 
+    'my friend made this lol, wont message first. Follow me on insta @ballboi',
+    'Lover of walks, hate vacuums and the mail man. If you like mud, we\'ll get along just fine' ];
 
+
+
+
+var index = 0;
 // stubbing out the basic user profiles
 module.exports = {
 
+
     users: dab.map (dab.get ('accounts'), function (account, opts, callback) {
-      const MAX = 14;
-      const MIN = 0;
-      var i = Math.floor(Math.random() * (MAX - MIN) + MIN);
-      var times = Math.floor(Math.random() * 4) + 1;
-      return callback(null, {
-        _id: account._id,
-        firstName: 'firsty Namey ',
-        matchCriteriaId: userIds[i],
-        firstName: firstNames[i],
-        lastName: lastNames[i],
-        gender: 'male',
-        bio: bios[i],
-        homeAddress: homeAddresses[i],
-        geoLocation: locations[i],
-        status: status[i],
-        birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
-        avatar: avatarUrls[i],
-        dog: dab.times(times, function(i, opts, callback){
-          return callback(null, {
-            firstName: 'Dog',
-            lastName: i,
-            bio: 'dog profile',
-            gender:'male',
-            breed: 'breed' + i,
-            birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
-            size: "large",
-            fixed: "neutered",
-            vetVerification: true,
-            avatar: avatarDogUrls[i]
-                });
-            })
-        });
-  }),
+        const MAX = 5;
+        const MIN = 0;
+        var i = Math.floor(Math.random() * (MAX - MIN) + MIN);
+        var times = Math.floor(Math.random() * 4) + 1;
+        return callback(null, {
+            _id: account._id,
+            //matchCriteriaId: userIds[i],
+            firstName: firstNames[index],
+            lastName: lastNames[index],
+            gender: gender[i],
+            bio: bios[index],
+            homeAddress: homeAddresses[index],
+            geoLocation: locations[index],
+            status: status[index],
+            birthday: Date.UTC((1990 + times), (0 + 1), times , 0, 0, 0),
+            avatar: avatarUrls[index],
+            dog: [{
+                    firstName: dogFirstNames[index],
+                    lastName: lastNames[index],
+                    bio: dogBio[index],
+                    gender: gender[i],
+                    breed: breed[i],
+                    birthday: Date.UTC((2005 + i), (1 + 1), i, 0, 0, 0),
+                    size: dogSizes[i],
+                    fixed: "neutered",
+                    vetVerification: true,
+                    avatar: avatarDogUrls[index]
+                }]
+                
+        }, index++);
+      
+    }),
 
     MatchCriterias: dab.times (15, function (i, opts, callback) {
         return callback(null, {
@@ -245,8 +264,8 @@ module.exports = {
     // let user 2 be friends with user 0 and 1
     friend: dab.times(2, function(i, opts, callback){
         var friend = {
-            user1: dab.ref ('users.2'),
-            user2: dab.ref (`users.${i}`)
+            user1: dab.ref ('users.0'),
+            user2: dab.ref (`users.${i + 1}`)
         };
 
         return callback (null, friend);
