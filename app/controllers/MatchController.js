@@ -52,6 +52,7 @@ MatchController.prototype.getCriteria = function(){
 MatchController.prototype.updateStatus = function(){
 
     return function(req, res){
+        console.log(req.body);
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
             if(person == null) { return res.sendStatus(404); }
@@ -70,10 +71,12 @@ MatchController.prototype.updateStatus = function(){
 
 MatchController.prototype.match = function(){
     return function(req, res){
-        if(req.body.liked == true){
+        if(JSON.parse(req.body.liked)){
 
+            // if no match is made, then insert into other users queue
+            MatchCriteria.findById(req.params.id, function(err, matchCriteria){
             // if a match is made,  create a new friend join document
-            if(matchCriteria.topUserId().liked == req.body.liked){
+            if(matchCriteria.topUserId().liked === JSON.parse(req.body.liked)){
                 MatchCriteria.findById(req.params.id, function(err, matchCriteria){
                     if(req.body.id != matchCriteria.topUserId()._id){
                         console.log("error in the queue");
@@ -89,15 +92,15 @@ MatchController.prototype.match = function(){
                 });
 
                 newMatch.save();
+                matchCriteria.save();
                 return res.status(200).json({"matched": true});
 
             } else {
-                // if no match is made, then insert into other users queue
-                MatchCriteria.findById(req.body.id, function(err, matchCriteria){
-                    matchCriteria.highPriorityInsertId(req.params.id);
-                });
+                matchCriteria.highPriorityInsertId(req.params.id);
+                matchCriteria.save();
                 return res.status(200).json({"matched": false});
             }
+        });
 
         } else {
             MatchCriteria.findById(req.params.id, function(err, matchCriteria){

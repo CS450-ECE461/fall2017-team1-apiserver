@@ -18,7 +18,6 @@ UserController.prototype.getUser = function(){
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
             if(person == null) { return res.sendStatus(404); }
-            console.log(person);
             return res.status(200).json(person);
         });
     }
@@ -51,7 +50,7 @@ UserController.prototype.updateStatus = function(){
 
 UserController.prototype.getDog = function(){
     return function(req, res){
-        console.log(req);
+
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
             if(person == null) { return res.sendStatus(404); }
@@ -63,7 +62,6 @@ UserController.prototype.getDog = function(){
 
 UserController.prototype.addDog = function(){
     return function(req, res){
-        console.log(req.body);
         User.findById(req.params.id, function(err, person){
             if(err) return res.sendStatus(500);
             if(person == null) { return res.sendStatus(404); }
@@ -84,7 +82,6 @@ UserController.prototype.updateDog = function(){
 
                 if(err) return res.sendStatus(500);
                 if(person == null) { return res.sendStatus(404); }
-                console.log(person);
                 return res.status(200).json(person);
         });
     }

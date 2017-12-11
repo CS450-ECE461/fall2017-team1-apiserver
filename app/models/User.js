@@ -44,6 +44,10 @@ var userSchema = new mongodb.Schema({
 
         size: {type: String,  trim: true},
 
+        playfulness: {type: String,  trim: true},
+        
+        energy: {type: String,  trim: true},
+
         fixed: {type: String,  trim: true},
 
         vetVerification: {type: Boolean, trim: true},
